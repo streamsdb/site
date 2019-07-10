@@ -1,20 +1,46 @@
 ---
 id: doc1
-title: Latin-ish
+title: Getting Started
 sidebar_label: Example Page
 ---
 
-Check the [documentation](https://docusaurus.io) for how to use Docusaurus.
+This document describes how to write and read your first events to StreamsDB with the command line utility `sdbcli`.
 
-## Lorem
+## Prerequisite
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum massa eget nulla aliquet sagittis. Proin odio tortor, vulputate ut odio in, ultrices ultricies augue. Cras ornare ultrices lorem malesuada iaculis. Etiam sit amet libero tempor, pulvinar mauris sed, sollicitudin sapien.
+* [Docker](https://docs.docker.com/install/)
 
-## Mauris In Code
+## Install SDBCLI
 
+StreamDB comes with a command line interface tool called  `sdbcli` . This document describes the basic usage of `fdbcli` and the commands it support. 
+
+The easiest way to use `sdbcli` is via Docker. To use it create an alias that runs the [`streamsdb/sdbcli`](https://hub.docker.com/r/streamsdb/sdbcli) docker image by executing the following command:
+
+``` BASH
+alias sdbcli='docker run -it streamsdb/sdbcli --host "sdb://sdb-01.streamsdb.io:443/default?tls=1&block=1"'
 ```
-Mauris vestibulum ullamcorper nibh, ut semper purus pulvinar ut. Donec volutpat orci sit amet mauris malesuada, non pulvinar augue aliquam. Vestibulum ultricies at urna ut suscipit. Morbi iaculis, erat at imperdiet semper, ipsum nulla sodales erat, eget tincidunt justo dui quis justo. Pellentesque dictum bibendum diam at aliquet. Sed pulvinar, dolor quis finibus ornare, eros odio facilisis erat, eu rhoncus nunc dui sed ex. Nunc gravida dui massa, sed ornare arcu tincidunt sit amet. Maecenas efficitur sapien neque, a laoreet libero feugiat ut.
+
+Now we can ping StreamsDB to verify we can reach the default server:
+
+``` BASH
+sdbcli ping
 ```
+
+The ping command should reply with the roundtrip duration.
+
+## Append your first event
+
+We will now use the `append` command to write an event message to a stream. Its syntax is `sdbcli append <STREAM> <EVENTTYPE> <VALUE>`.
+
+The `<SREAM>` argument is the name of the stream, the `<EVENTTYPE>` argument the name of the type of the event and the `<VALUE>` argument can either be a string value, or `-` to read from STDIN.
+
+Execute the following command to append the value "HELLO WORLD" to the "welcome" stream:
+
+``` BASH
+sdbcli append "welcome" "string" "HELLO WORLD"
+```
+
+It should respond with a number. This is the position of the message in the stream we just wrote.
 
 ## Nulla
 
