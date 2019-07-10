@@ -48,14 +48,14 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'logo.png',
+  headerIcon: 'logo.svg',
   footerIcon: 'img/favicon.ico',
   favicon: 'img/favicon.ico',
 
   /* Colors for website */
   colors: {
-    primaryColor: '#3399ff',
-    secondaryColor: '#8bbadc',
+    primaryColor: '#0091ea',
+    secondaryColor: '#4486A8',
   },
 
   /* Custom fonts for website */
@@ -73,7 +73,7 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Your Name or Your Company Name`,
+  copyright: `Copyright © ${new Date().getFullYear()} StreamsDB`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
