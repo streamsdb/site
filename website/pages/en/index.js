@@ -65,7 +65,7 @@ class HomeSplash extends React.Component {
           <PromoSection>
             <Button href="/">Getting Started</Button>
           </PromoSection>
-          <script id="asciicast-7UspWegVwjgPlxlgVGT5NYWLM" src="https://asciinema.org/a/7UspWegVwjgPlxlgVGT5NYWLM.js" async data-speed="1" data-autoplay="true" data-loop="1" async></script>
+          <script id="asciicast-pUvBjz7nEuRmZQorEsVBBcE9g" src="https://asciinema.org/a/pUvBjz7nEuRmZQorEsVBBcE9g.js" async data-speed="1" data-autoplay="true" data-loop="1" async></script>
         </div>
       </SplashContainer>
     );
