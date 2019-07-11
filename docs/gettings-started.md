@@ -1,7 +1,6 @@
 ---
-id: doc1
+id: getting-started
 title: Getting Started
-sidebar_label: Example Page
 ---
 
 This document describes how to write and read your first events to StreamsDB with the command line utility `sdbcli`.
