@@ -37,8 +37,8 @@ class HomeSplash extends React.Component {
 
     const ProjectTitle = () => (
       <h2 className="projectTitle">
-        {siteConfig.title}
-        <small>{siteConfig.tagline}</small>
+        StreamsDB
+        <small>Unleashes high performance and fault tolerant super power to advanced stream processing and event sourcing systems</small>
       </h2>
     );
 
@@ -146,22 +146,75 @@ class Index extends React.Component {
     );
 
     const Features = () => (
-      <Block layout="fourColumn">
+      <>
+      <Block layout="threeColumn">
         {[
           {
-            content: 'This is the content of my feature',
+            content: 'StreamsDB provides a rock solid foundation for event-sourced applications that store their state as a series of events.',
             image: `${baseUrl}img/undraw_react.svg`,
             imageAlign: 'top',
-            title: 'Feature One',
+            title: 'Event Sourcing',
           },
           {
-            content: 'The content of my second feature',
+            content: 'StreamsDB offers amazing performance on commodity hardware, allowing you to support heavy loads at minimal costs.',
             image: `${baseUrl}img/undraw_operating_system.svg`,
             imageAlign: 'top',
-            title: 'Feature Two',
+            title: 'Industry-leading performance',
+          },
+          {
+            content: 'StreamsDB can replicate to multiple machines, across availability zones and even across datacenters.',
+            image: `${baseUrl}img/undraw_operating_system.svg`,
+            imageAlign: 'top',
+            title: 'Fault tolerant',
           },
         ]}
       </Block>
+      <Block layout="threeColumn">
+        {[
+          {
+            content: 'StreamsDB has a distributed architecture that self balances and gracefully scales out horizontaly.',
+            image: `${baseUrl}img/undraw_react.svg`,
+            imageAlign: 'top',
+            title: 'Easily scalable',
+          },
+          {
+            content: 'StreamsDB provides the ability to watch streams for changes with low latency and minimal resource costs.',
+            image: `${baseUrl}img/undraw_operating_system.svg`,
+            imageAlign: 'top',
+            title: 'Watch Support',
+          },
+          {
+            content: 'We provide cost efficient cloud instances of StreamsDB to so you can focus on what really matters, your software.',
+            image: `${baseUrl}img/undraw_operating_system.svg`,
+            imageAlign: 'top',
+            title: 'Cloud Native',
+          },
+        ]}
+      </Block>
+      <Block layout="threeColumn">
+        {[
+          {
+            content: 'StreamsDB is build with proven technologies that are battle tested and ready for the toughest tasks.',
+            image: `${baseUrl}img/undraw_react.svg`,
+            imageAlign: 'top',
+            title: 'Build with standards',
+          },
+          {
+            content: 'StreamsDB allows you write to multiple streams within a single transaction cheaply.',
+            image: `${baseUrl}img/undraw_operating_system.svg`,
+            imageAlign: 'top',
+            title: 'Transaction support',
+          },
+          {
+            content: 'StreamsDB has client support for Go, .NET, NodeJS and Java.',
+            image: `${baseUrl}img/undraw_operating_system.svg`,
+            imageAlign: 'top',
+            title: 'Major platform support',
+          },
+        ]}
+      </Block>
+
+      </>
     );
 
     const Showcase = () => {
