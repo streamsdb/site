@@ -38,7 +38,7 @@ class HomeSplash extends React.Component {
     const ProjectTitle = () => (
       <h2 className="projectTitle">
         StreamsDB
-        <small>Unleashes high performance and fault tolerant super power to advanced stream processing and event sourcing systems</small>
+        <small>Unleashes high performance and fault tolerant super powers to <br /> advanced stream processing and event sourcing systems</small>
       </h2>
     );
 
@@ -60,14 +60,12 @@ class HomeSplash extends React.Component {
 
     return (
       <SplashContainer>
-        <Logo img_src={`${baseUrl}img/undraw_monitor.svg`} />
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
-            <Button href="#try">Try It Out</Button>
-            <Button href={docUrl('doc1.html')}>Example Link</Button>
-            <Button href={docUrl('doc2.html')}>Example Link 2</Button>
+            <Button href="/">Getting Started</Button>
           </PromoSection>
+          <script id="asciicast-7UspWegVwjgPlxlgVGT5NYWLM" src="https://asciinema.org/a/7UspWegVwjgPlxlgVGT5NYWLM.js" async data-autoplay="true" data-loop="1" async></script>
         </div>
       </SplashContainer>
     );
@@ -92,171 +90,82 @@ class Index extends React.Component {
       </Container>
     );
 
-    const FeatureCallout = () => (
-      <div
-        className="productShowcaseSection paddingBottom"
-        style={{textAlign: 'center'}}>
-        <h2>Feature Callout</h2>
-        <MarkdownBlock>These are features of this project</MarkdownBlock>
-      </div>
-    );
-
-    const TryOut = () => (
-      <Block id="try">
-        {[
-          {
-            content:
-              'To make your landing page more attractive, use illustrations! Check out ' +
-              '[**unDraw**](https://undraw.co/) which provides you with customizable illustrations which are free to use. ' +
-              'The illustrations you see on this page are from unDraw.',
-            image: `${baseUrl}img/undraw_code_review.svg`,
-            imageAlign: 'left',
-            title: 'Wonderful SVG Illustrations',
-          },
-        ]}
-      </Block>
-    );
-
-    const Description = () => (
-      <Block background="dark">
-        {[
-          {
-            content:
-              'This is another description of how this project is useful',
-            image: `${baseUrl}img/undraw_note_list.svg`,
-            imageAlign: 'right',
-            title: 'Description',
-          },
-        ]}
-      </Block>
-    );
-
-    const LearnHow = () => (
-      <Block background="light">
-        {[
-          {
-            content:
-              'Each new Docusaurus project has **randomly-generated** theme colors.',
-            image: `${baseUrl}img/undraw_youtube_tutorial.svg`,
-            imageAlign: 'right',
-            title: 'Randomly Generated Theme Colors',
-          },
-        ]}
-      </Block>
-    );
-
+   
     const Features = () => (
-      <>
-      <Block layout="threeColumn">
+      <div>
+      <Block layout="threeColumn" background="light">
         {[
           {
             content: 'StreamsDB provides a rock solid foundation for event-sourced applications that store their state as a series of events.',
-            image: `${baseUrl}img/undraw_react.svg`,
+            image: `${baseUrl}img/undraw_timeline_9u4u.svg`,
             imageAlign: 'top',
             title: 'Event Sourcing',
           },
           {
             content: 'StreamsDB offers amazing performance on commodity hardware, allowing you to support heavy loads at minimal costs.',
-            image: `${baseUrl}img/undraw_operating_system.svg`,
+            image: `${baseUrl}img/undraw_Outer_space_drqu.svg`,
             imageAlign: 'top',
             title: 'Industry-leading performance',
           },
           {
             content: 'StreamsDB can replicate to multiple machines, across availability zones and even across datacenters.',
-            image: `${baseUrl}img/undraw_operating_system.svg`,
+            image: `${baseUrl}img/undraw_Security_on_ff2u.svg`,
             imageAlign: 'top',
             title: 'Fault tolerant',
           },
         ]}
-      </Block>
-      <Block layout="threeColumn">
+        </Block>
+        <Block layout="threeColumn" background="light">
         {[
           {
             content: 'StreamsDB has a distributed architecture that self balances and gracefully scales out horizontaly.',
-            image: `${baseUrl}img/undraw_react.svg`,
+            image: `${baseUrl}img/undraw_fast_loading_0lbh.svg`,
             imageAlign: 'top',
             title: 'Easily scalable',
           },
           {
             content: 'StreamsDB provides the ability to watch streams for changes with low latency and minimal resource costs.',
-            image: `${baseUrl}img/undraw_operating_system.svg`,
+            image: `${baseUrl}img/undraw_news_go0e.svg`,
             imageAlign: 'top',
             title: 'Watch Support',
           },
           {
             content: 'We provide cost efficient cloud instances of StreamsDB to so you can focus on what really matters, your software.',
-            image: `${baseUrl}img/undraw_operating_system.svg`,
+            image: `${baseUrl}img/undraw_server_status_5pbv.svg`,
             imageAlign: 'top',
             title: 'Cloud Native',
           },
         ]}
-      </Block>
-      <Block layout="threeColumn">
+        </Block>
+        <Block layout="threeColumn" background="light">
         {[
           {
             content: 'StreamsDB is build with proven technologies that are battle tested and ready for the toughest tasks.',
-            image: `${baseUrl}img/undraw_react.svg`,
+            image: `${baseUrl}img/undraw_QA_engineers_dg5p.svg`,
             imageAlign: 'top',
             title: 'Build with standards',
           },
           {
             content: 'StreamsDB allows you write to multiple streams within a single transaction cheaply.',
-            image: `${baseUrl}img/undraw_operating_system.svg`,
+            image: `${baseUrl}img/undraw_version_control_9bpv.svg`,
             imageAlign: 'top',
             title: 'Transaction support',
           },
           {
             content: 'StreamsDB has client support for Go, .NET, NodeJS and Java.',
-            image: `${baseUrl}img/undraw_operating_system.svg`,
+            image: `${baseUrl}img/undraw_Designer_by46.svg`,
             imageAlign: 'top',
             title: 'Major platform support',
           },
         ]}
       </Block>
-
-      </>
+      </div>
     );
-
-    const Showcase = () => {
-      if ((siteConfig.users || []).length === 0) {
-        return null;
-      }
-
-      const showcase = siteConfig.users
-        .filter(user => user.pinned)
-        .map(user => (
-          <a href={user.infoLink} key={user.infoLink}>
-            <img src={user.image} alt={user.caption} title={user.caption} />
-          </a>
-        ));
-
-      const pageUrl = page => baseUrl + (language ? `${language}/` : '') + page;
-
-      return (
-        <div className="productShowcaseSection paddingBottom">
-          <h2>Who is Using This?</h2>
-          <p>This project is used by all these people</p>
-          <div className="logos">{showcase}</div>
-          <div className="more-users">
-            <a className="button" href={pageUrl('users.html')}>
-              More {siteConfig.title} Users
-            </a>
-          </div>
-        </div>
-      );
-    };
 
     return (
       <div>
         <HomeSplash siteConfig={siteConfig} language={language} />
-        <div className="mainContainer">
-          <Features />
-          <FeatureCallout />
-          <LearnHow />
-          <TryOut />
-          <Description />
-          <Showcase />
-        </div>
+        <Features />
       </div>
     );
   }

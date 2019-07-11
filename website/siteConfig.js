@@ -31,7 +31,7 @@ const siteConfig = {
 
   // Used for publishing and more
   projectName: 'StreamsDB',
-  organizationName: 'Craftify',
+  organizationName: 'streamsdb',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
@@ -44,18 +44,26 @@ const siteConfig = {
     {blog: true, label: 'Blog'},
   ],
 
+  stylesheets: [
+    'https://docusaurus.io/style.css',
+    {
+      href: '/css/custom.css',
+      type: 'text/css',
+    },
+  ],
+
   // If you have users set above, you add it here:
   users,
 
   /* path to images for header/footer */
   headerIcon: 'img/logo.svg',
-  footerIcon: 'img/favicon.ico',
+  footerIcon: 'img/logo-blue-bg.svg',
   favicon: 'img/favicon.ico',
 
   /* Colors for website */
   colors: {
     primaryColor: '#0091ea',
-    secondaryColor: '#4486A8',
+    secondaryColor: '#40C4FF',
   },
 
   /* Custom fonts for website */
@@ -100,7 +108,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
+  repoUrl: 'https://github.com/streamsdb/site',
 };
 
 module.exports = siteConfig;

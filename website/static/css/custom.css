@@ -1,5 +1,12 @@
 /* your custom css */
 
+.imageAlignTop .blockImage {
+    width: 160px !important;
+    height: 160px !important;
+    max-width: 160px !important;
+    max-height: 160px !important;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
