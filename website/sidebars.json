@@ -2,8 +2,11 @@
   "docs": {
     "Introduction": [
       "introduction",
-      "core-concepts",
-      "getting-started"
+      "core-concepts"
+    ],
+    "Gettings started": [
+      "getting-started-cli",
+      "getting-started-go"
     ],
     "Reference": [
       "connection-string"
