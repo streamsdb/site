@@ -3,6 +3,9 @@
     "Introduction": [
       "introduction",
       "getting-started"
+    ],
+    "Reference": [
+      "connection-string"
     ]
   }
 }
