@@ -24,7 +24,7 @@ const siteConfig = {
   title: 'StreamsDB', // Title for your website.
   tagline: 'The place where streams feel at home 💕',
   url: 'https://streamsdb.io', // Your website URL
-  editUrl: 'https://github.com/streamsdb/site/',
+  editUrl: 'https://github.com/streamsdb/site/edit/master/docs/',
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
