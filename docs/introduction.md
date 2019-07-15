@@ -9,6 +9,12 @@ This document describes what StreamsDB is and why it was created.
 
 StreamsDB is a modern streams database that can handle billions of streams and trillions messages. It provides a rock solid foundation for event sourced and stream processing applications and comes with strong transactional garantees out of the box.
 
+## Event Sourcing
+
+The fundamental idea of Event Sourcing is that of ensuring every change to the state of an application is captured in an event object, and that these event objects are themselves stored in the sequence they were applied.
+
+Event Sourcing ensures that all changes to application state are stored as a sequence of events. Not just can we query these events, we can also use the event log to reconstruct past states, and as a foundation to automatically adjust the state to cope with retroactive changes.
+
 ### Transactions
 
 The StreamsDB transactional model ensures the following properties, known collectively as “ACID”:

@@ -2,6 +2,7 @@
   "docs": {
     "Introduction": [
       "introduction",
+      "core-concepts",
       "getting-started"
     ],
     "Reference": [
