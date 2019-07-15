@@ -22,7 +22,7 @@ class HomeSplash extends React.Component {
     const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
 
     const SplashContainer = props => (
-      <div className="homeContainer">
+      <div className="homeContainer paddingTop paddingBottom">
         <div className="homeSplashFade">
           <div className="wrapper homeWrapper">{props.children}</div>
         </div>
@@ -36,11 +36,12 @@ class HomeSplash extends React.Component {
     );
 
     const ProjectTitle = () => (
-      <h2 className="projectTitle" style={{maxWidth: "1100px", fontSize: "64px", paddingTop: "60px", fontWeight:"400", textAlign: "left", lineHeight: "1.25", fontFamily: "'Rubik',Helvetica,Arial,Lucida,sans-serif"}}>
+      <h2 className="projectTitle" style={{maxWidth: "1100px", fontSize: "64px", fontWeight:"400", textAlign: "left", lineHeight: "1.25", fontFamily: "'Rubik',Helvetica,Arial,Lucida,sans-serif"}}>
         Unleash high performance <br />and fault tolerant super powers
         <p style={{textAlign: "left", fontSize: "25px", paddingTop: "5px"}}>
         StreamsDB is the modern stream database for advanced stream processing and event sourcing systems
         </p>
+        <Button href="/docs/getting-started">Getting Started</Button>
       </h2>
     );
 
@@ -62,7 +63,7 @@ class HomeSplash extends React.Component {
 
     return (
       <SplashContainer>
-        <div className="inner" style={{maxWidth: "1000px", textAlign: "left", paddingTop: "60px", paddingBottom: "45px"}}>
+        <div className="inner" style={{maxWidth: "1000px", textAlign: "left"}}>
           <ProjectTitle siteConfig={siteConfig} />
         </div>
       </SplashContainer>
