@@ -62,6 +62,9 @@ const siteConfig = {
   footerIcon: 'img/logo-blue-bg.svg',
   favicon: 'img/favicon.ico',
 
+  gaTrackingId: 'UA-143880638-1',
+  gaGtag: true,
+
   /* Colors for website */
   colors: {
     primaryColor: '#0091ea',
