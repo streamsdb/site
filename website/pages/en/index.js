@@ -36,9 +36,11 @@ class HomeSplash extends React.Component {
     );
 
     const ProjectTitle = () => (
-      <h2 className="projectTitle">
-        StreamsDB
-        <small>Unleashes high performance and fault tolerant super powers to <br /> advanced stream processing and event sourcing systems</small>
+      <h2 className="projectTitle" style={{maxWidth: "1100px", fontSize: "64px", paddingTop: "60px", fontWeight:"400", textAlign: "left", lineHeight: "1.25", fontFamily: "'Rubik',Helvetica,Arial,Lucida,sans-serif"}}>
+        Unleash high performance <br />and fault tolerant super powers
+        <p style={{textAlign: "left", fontSize: "25px", paddingTop: "5px"}}>
+        StreamsDB is the modern stream database for advanced stream processing and event sourcing systems
+        </p>
       </h2>
     );
 
@@ -60,12 +62,8 @@ class HomeSplash extends React.Component {
 
     return (
       <SplashContainer>
-        <div className="inner">
+        <div className="inner" style={{maxWidth: "1000px", textAlign: "left", paddingTop: "60px", paddingBottom: "45px"}}>
           <ProjectTitle siteConfig={siteConfig} />
-          <PromoSection>
-            <Button href="/">Getting Started</Button>
-          </PromoSection>
-          <script id="asciicast-pUvBjz7nEuRmZQorEsVBBcE9g" src="https://asciinema.org/a/pUvBjz7nEuRmZQorEsVBBcE9g.js" async data-speed="1" data-autoplay="true" data-loop="1" async></script>
         </div>
       </SplashContainer>
     );
@@ -97,19 +95,19 @@ class Index extends React.Component {
         {[
           {
             content: 'StreamsDB provides a rock solid foundation for event-sourced applications that store their state as a series of events.',
-            image: `${baseUrl}img/undraw_timeline_9u4u.svg`,
+            image: `${baseUrl}img/undraw_Posts_rskc.svg`,
             imageAlign: 'top',
             title: 'Event Sourcing',
           },
           {
             content: 'StreamsDB offers amazing performance on commodity hardware, allowing you to support heavy loads at minimal costs.',
-            image: `${baseUrl}img/undraw_Outer_space_drqu.svg`,
+            image: `${baseUrl}img/undraw_To_the_stars_qhyy.svg`,
             imageAlign: 'top',
             title: 'Industry-leading performance',
           },
           {
             content: 'StreamsDB can replicate to multiple machines, across availability zones and even across datacenters.',
-            image: `${baseUrl}img/undraw_Security_on_ff2u.svg`,
+            image: `${baseUrl}img/undraw_secure_server_s9u8.svg`,
             imageAlign: 'top',
             title: 'Fault tolerant',
           },
@@ -124,10 +122,10 @@ class Index extends React.Component {
             title: 'Easily scalable',
           },
           {
-            content: 'StreamsDB provides the ability to watch streams for changes with low latency and minimal resource costs.',
-            image: `${baseUrl}img/undraw_news_go0e.svg`,
+            content: 'StreamsDB provides the ability to subscribe streams for changes with low latency and minimal resource costs.',
+            image: `${baseUrl}img/undraw_timeline_9u4u.svg`,
             imageAlign: 'top',
-            title: 'Watch Support',
+            title: 'Change Notification',
           },
           {
             content: 'We provide cost efficient cloud instances of StreamsDB to so you can focus on what really matters, your software.',
@@ -146,7 +144,7 @@ class Index extends React.Component {
             title: 'Build with standards',
           },
           {
-            content: 'StreamsDB allows you write to multiple streams within a single transaction cheaply.',
+            content: 'StreamsDB allows you write to multiple streams within a single transaction secure and efficiently.',
             image: `${baseUrl}img/undraw_version_control_9bpv.svg`,
             imageAlign: 'top',
             title: 'Transaction support',

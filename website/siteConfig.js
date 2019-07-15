@@ -46,6 +46,7 @@ const siteConfig = {
   ],
 
   stylesheets: [
+    "https://fonts.googleapis.com/css?family=Rubik%3A300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C700%2C700italic%2C900%2C900italic&amp;ver=5.2.1#038;subset=cyrillic,hebrew,latin,latin-ext",
     'https://docusaurus.io/style.css',
     {
       href: '/css/custom.css',
