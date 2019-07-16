@@ -36,9 +36,11 @@ class HomeSplash extends React.Component {
     );
 
     const ProjectTitle = () => (
-      <h2 className="projectTitle" style={{maxWidth: "1100px", fontSize: "64px", fontWeight:"400", textAlign: "left", lineHeight: "1.25", fontFamily: "'Rubik',Helvetica,Arial,Lucida,sans-serif"}}>
-        Unleash high performance <br />and fault tolerant super powers
-        <p style={{textAlign: "left", fontSize: "25px", paddingTop: "5px"}}>
+      <h2 className="projectTitle" style={{fontSize: "64px", fontWeight:"400", lineHeight: "1.25", fontFamily: "'Rubik',Helvetica,Arial,Lucida,sans-serif"}}>
+        Unleash high performance<br />
+        and fault tolerant super powers<br />
+        to streams
+        <p style={{fontSize: "25px", paddingTop: "5px"}}>
         StreamsDB is the modern stream database for advanced stream processing and event sourcing systems
         </p>
         <Button href="/docs/getting-started">Getting Started</Button>
@@ -63,7 +65,7 @@ class HomeSplash extends React.Component {
 
     return (
       <SplashContainer>
-        <div className="inner" style={{maxWidth: "1000px", textAlign: "left"}}>
+        <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
         </div>
       </SplashContainer>
