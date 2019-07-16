@@ -37,21 +37,18 @@ class Footer extends React.Component {
           </a>
           <div>
             <h5>Docs</h5>
-            <a href={this.docUrl('getting-started.html', this.props.language)}>
-              Getting Started (or other categories)
+            <a href={this.docUrl('getting-started', this.props.language)}>
+              Getting Started
             </a>
-            <a href={this.docUrl('doc2.html', this.props.language)}>
-              Guides (or other categories)
+            <a href={this.docUrl('core-concepts', this.props.language)}>
+              Core concepts
             </a>
             <a href={this.docUrl('doc3.html', this.props.language)}>
-              API Reference (or other categories)
+              Reference
             </a>
           </div>
           <div>
             <h5>Community</h5>
-            <a href={this.pageUrl('users.html', this.props.language)}>
-              User Showcase
-            </a>
             <a
               href="https://stackoverflow.com/questions/tagged/streamsdb"
               target="_blank"
@@ -67,8 +64,7 @@ class Footer extends React.Component {
             </a>
           </div>
           <div>
-            <h5>More</h5>
-            <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
+            <h5>Code</h5>
             <a href="https://github.com/streamsdb">GitHub</a>
             <a
               className="github-button"
