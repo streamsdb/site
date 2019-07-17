@@ -43,7 +43,7 @@ class HomeSplash extends React.Component {
         <p style={{fontSize: "25px", paddingTop: "5px"}}>
         StreamsDB is the modern stream database for advanced stream processing and event sourcing systems
         </p>
-        <Button href="/docs/getting-started">Getting Started</Button>
+        <Button href="/docs/">Getting Started</Button>
       </h2>
     );
 
