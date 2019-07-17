@@ -54,9 +54,6 @@ const siteConfig = {
     },
   ],
 
-  // If you have users set above, you add it here:
-  users,
-
   /* path to images for header/footer */
   headerIcon: 'img/logo.svg',
   footerIcon: 'img/logo-blue-bg.svg',
@@ -68,7 +65,7 @@ const siteConfig = {
   /* Colors for website */
   colors: {
     primaryColor: '#0091ea',
-    secondaryColor: '#40C4FF',
+    secondaryColor: '#2BAEFC',
   },
 
   /* Custom fonts for website */
