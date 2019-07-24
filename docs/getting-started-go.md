@@ -43,12 +43,14 @@ func main() {
 
 ## Connect to StreamsDB
 
-Once the driver has been imported, you can connecto to a StreamsDB server using the `sdb.Connect()` function. You must pass a connection string, you can read more about the [connection string reference](/docs/connection-string).
+Once the driver has been imported, you can create a client connection to a StreamsDB server using the `sdb.Open()` function that takes a connection string. More info about the connection string can be found in the [connection string reference](/docs/connection-string).
+
+> There should be a single client connection to a StreamsDB server for you entire process. In other words, you should not create a new client connection for each request.
 
 Add this code in the main function:
 
 ``` go
-conn, err := sdb.Connect("sdb://sdb-01.streamsdb.io:443/example")
+conn, err := sdb.Open("sdb://sdb-01.streamsdb.io:443/example")
 if err != nil {
   log.Fatal("connect error", err)
 }
@@ -58,7 +60,7 @@ fmt.Println("Connected to StreamsDB!")
 
 ## Handle to a database
 
-Once you have connected, you can now get a handle to the database by using the `DB()` method. You must pass a database name, or a empty string if you want to use the one from the connection string.
+Once you have connected, you can get a handle to the database by using the `DB()` method. Pass a database name, or a empty string if you want to use the one from the connection string.
 
 ```
 db := conn.DB("")
@@ -66,12 +68,12 @@ db := conn.DB("")
 
 ## Writing to a stream
 
-You can use the `Append()` method to write to a stream in the database. Streams are automatically created as soon as a message is written to them. After a succesful write the position of the message is returned. This position can later be used to read the message from the stream.
+You can use the `AppendStream()` method to write to a stream in the database. Streams are automatically created as soon as a message is written to them. After a succesful write the position of the message is returned. This position can later be used to read the message from the stream.
 
 Add the following code at the end of the main function to get a database reference and append a message:
 
 ``` go
-position, err := db.Append("my-stream", sdb.AnyVersion, sdb.MessageInput{
+position, err := db.AppendStream("my-stream", sdb.AnyVersion, sdb.MessageInput{
   Type: "string",
   Value: []byte("hello world!"),
 })
@@ -83,14 +85,16 @@ if err != nil {
 fmt.Println("written to stream at position", position)
 ```
 
+The `AppendStream` method returns the position of the first message that has been written.
+
 ## Reading from a stream
 
-You can use the `Read()` method to read from a stream.
+You can use the `ReadStreamForward()` method to read from a stream in a forward direction, there is also a `ReadStreamBackward()` method to read in the opposide direction.
 
-Add the following code at the end of the main function to read from a stream:
+Add the following code at the end of the main function to read from the stream from the position we appended our message:
 
 ``` go
-slice, err := db.Read("my-stream", position, 10)
+slice, err := db.ReadStreamForward("my-stream", position, 10)
 if err != nil {
   log.Fatal("read error", err)
 }
