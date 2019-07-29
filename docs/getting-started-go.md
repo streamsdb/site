@@ -10,7 +10,6 @@ This tutorial will help you getting started with the [StreamsDB Go Driver](https
 * Connect to StreamsDB
 * Write messages to a stream
 * Read messages from a stream
-* Subscribe to a stream for changes
 
 You can view the complete code for this tutorial on [this Github repository](https://github.com/streamsdb/driver/tree/master/go/example). In order to follow along, you need a StreamsDB database to which you can connect. You can easily create a free 1GB database using [streamsdb.io](https://streamsdb.io/register).
 
