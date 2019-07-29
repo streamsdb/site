@@ -44,7 +44,7 @@ func main() {
 
 Once the driver has been imported, you can create a client connection to a StreamsDB server using the `sdb.Open()` function that takes a connection string. More information about the connection string can be found in the [connection string reference](/docs/connection-string).
 
-> There should be a single client connection to a StreamsDB server for you entire process. In other words, you should not create a new client connection for each request.
+> There should be a single client connection to a StreamsDB server for you entire process. In other words, you should create the client connection on startup and there is no need to create a new client connection for each request.
 
 Add this code in the main function:
 
