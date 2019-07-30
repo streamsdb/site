@@ -11,7 +11,7 @@ A number of databases can be run on a single StreamsDB server or cluster.
 
 StreamsDB does not create databases on the fly. An database needs to be created before you can start working with it.
 
-A database can contain multiple streams and an holds a single `$all` stream. The `$all` stream holds pointers to all messages in the database in the order they are written.
+A database can contain multiple streams.
 
 ## Stream
 
@@ -26,8 +26,6 @@ Streams have the following properties:
 | Name    | string | The unique identifier of the stream                  |
 | Head    | number | The number of the message last written to the stream |
 
-
-
 ## Message
 
 The message is the unit of storing data in StreamsDB database. Messages are immutable, meaning they can only be created or deleted, but not modified.
@@ -41,6 +39,10 @@ Messages have the following properties:
 | Header   | Bytes  | Metadata for the message                                                           |
 | Value    | Bytes  | The value of the message                                                           |
 
-
-
 An message is immutable. It can only be created or deleted. This benefits the cacheability of an messages.
+
+## Group (#)
+
+Group streams hold all messages written to streams in a certain group with a `#` prefix. Groups are created automaticly when messages are written to streams. When a message is written to a stream, the group of the stream is determined by splitting the stream name by the first `-` character. If a group is found, the message is also written to the group stream.
+
+In other words, when a message is written to a stream with the name `order-da9a7f71-e06a-4385-a61d-f9c05527ad1a`, the event will also appear on the stream `#order`.
