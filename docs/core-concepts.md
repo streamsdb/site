@@ -48,3 +48,9 @@ Group streams are streams that hold all messages written to streams in a certain
 In other words, when a message is written to a stream with the name `order-1`, the event will also appear on the stream `#order`.
 
 Note that the creation and modification of group stream is asynchronously and therefor it might take a short time before message appear on the group stream after they have been written to the concrete stream.
+
+| Stream Name   | Group   |
+|----------|--------|
+| order-1 | #order |
+| order-e57ab23e-4ce9-42c8-abe0-c771011b5ffe     | #order |
+| order   | _no applicable_  |
