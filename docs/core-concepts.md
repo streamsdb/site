@@ -45,4 +45,4 @@ An message is immutable. It can only be created or deleted. This benefits the ca
 
 Group streams are streams that hold all messages written to streams in a certain group. Group streams are prefixed with `#` followed by the group name. They are created automaticly by StreamsDB when a message is written to a stream with a name that contains a group. The group of the stream is determined by splitting the stream name by the first `-` character. If a group is found, the message is also written to the group stream.
 
-In other words, when a message is written to a stream with the name `order-da9a7f71-e06a-4385-a61d-f9c05527ad1a`, the event will also appear on the stream `#order`.
+In other words, when a message is written to a stream with the name `order-1`, the event will also appear on the stream `#order`.
