@@ -55,3 +55,10 @@ Note that the creation and modification of group stream is asynchronously and th
 | order-2 | #order |
 | order-e57ab23e-4ce9-42c8-abe0-c771011b5ffe     | #order |
 | order   | _not applicable_  |
+| product-1 | #product |
+| product-2 | #product |
+| product-d1536fee-8800-437f-9718-2b86d015f1fe | #product |
+| shopping-card-1 | #shopping |
+| shopping-card-2 | #shopping |
+
+> Since the group of a stream is defined by the first `-`, stream names like `shopping-card-1` and `shopping-card-d1536fee-8800-437f-9718-2b86d015f1fe` have the group `#shopping`, not `#shopping-card`.
