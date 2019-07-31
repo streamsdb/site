@@ -79,9 +79,9 @@ foreach(var message in slice.Messages) {
 }
 
 // OUTPUT:
-[1] hello
-[2] world
-[3] !
+// [1] hello
+// [2] world
+// [3] !
 ```
 
 ## Opposite direction
@@ -96,7 +96,7 @@ foreach(var message in slice.Messages) {
 }
 
 // OUTPUT:
-[3] !
-[2] world
-[1] hello
+// [3] !
+// [2] world
+// [1] hello
 ```
