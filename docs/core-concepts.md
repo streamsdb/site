@@ -53,7 +53,7 @@ Here is a concrete example: when message `A` is written to a stream `Order.1` an
 
 | Stream Name                                  | Group           |
 |----------------------------------------------|-----------------|
-| `Order`                                      | _not group_     |
+| `Order`                                      | _no group_      |
 | `Order-1`                                    | `#Order`        |
 | `Order-2`                                    | `#Order`        |
 | `Order-e57ab23e-4ce9-42c8-abe0-c771011b5ffe` | `#Order`        |
