@@ -49,7 +49,7 @@ Group streams are prefixed with `#` followed by the group name, eq. `#Order`. Th
 
 The group writting is a asynchronous background process. Therefor it might take a short time before message show up on the corresponding group stream.
 
-Here is a concrete example: when message `A` is written to a stream `Order.1` and message `B` is written to `Order.2`, both message `A` and `B` will also appear on the stream `#Order`.
+Here is a concrete example: when message `A` is written to a stream `Order-1` and message `B` is written to `Order-2`, both message `A` and `B` will also appear on the stream `#Order`.
 
 | Stream Name                                  | Group           |
 |----------------------------------------------|-----------------|
