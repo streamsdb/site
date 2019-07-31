@@ -43,11 +43,13 @@ An message is immutable. It can only be created or deleted. This benefits the ca
 
 ## Groups
 
-Group streams are streams that hold all messages written to streams in a certain group. They are created automaticly when a message is written to a stream with a name that contains a group. The group of the stream is determined by splitting the stream name by the first `-` character. If a group is found, the message is also written to the group stream.  Group streams are prefixed with `#` followed by the group name, eq. `#Order`. 
+Group streams are streams that hold all messages written to streams in a certain group. They are created automaticly when a message is written to a stream that contains a group. The group of the stream is determined by splitting the stream name by the **first** `-` character. Streams without a `-` are considered to have no group. 
 
-For example, when a message `A` is written to a stream with the name `Order.1` and message `B` is written to `Order.2`, the messages `A` and `B` will also appear on the stream `#Order`.
+Group streams are prefixed with `#` followed by the group name, eq. `#Order`.
 
-Note that the creation and modification of group stream is asynchronously and therefor it might take a short time before message appear on the group stream after they have been written to the concrete stream.
+Here is a concrete example: when message `A` is written to a stream `Order.1` and message `B` is written to `Order.2`, both message `A` and `B` will also appear on the stream `#Order`.
+
+The group writting is a asynchronous background process. Therefor it might take a short time before message show up on the corresponding group stream.
 
 | Stream Name                                  | Group         |
 |----------------------------------------------|---------------|
