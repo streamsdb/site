@@ -55,6 +55,8 @@ Note that the creation and modification of group stream is asynchronously and th
 | order.1                                      | #order         |
 | order.2                                      | #order         |
 | order.e57ab23e-4ce9-42c8-abe0-c771011b5ffe   | #order         |
+| eu.order.1                                   | #eu.order      |
+| us.order.1                                   | #us.order      |
 | product.1                                    | #product       |
 | product.2                                    | #product       |
 | product.d1536fee-8800-437f-9718-2b86d015f1fe | #product       |
