@@ -1,6 +1,6 @@
 ---
-id: getting-started-go
-title: Getting Started Go
+id: getting-started-dotnet
+title: Getting Started .NET
 sidebar_label: Go
 ---
 
