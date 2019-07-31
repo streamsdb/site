@@ -43,22 +43,20 @@ An message is immutable. It can only be created or deleted. This benefits the ca
 
 ## Groups
 
-Group streams are streams that hold all messages written to streams in a certain group. They are created automaticly when a message is written to a stream with a name that contains a group. The group of the stream is determined by splitting the stream name by the first `-` character. If a group is found, the message is also written to the group stream.  Group streams are prefixed with `#` followed by the group name, eq. `#order`. 
+Group streams are streams that hold all messages written to streams in a certain group. They are created automaticly when a message is written to a stream with a name that contains a group. The group of the stream is determined by splitting the stream name by the last `.` character. If a group is found, the message is also written to the group stream.  Group streams are prefixed with `#` followed by the group name, eq. `#order`. 
 
-For example, when a message `A` is written to a stream with the name `order-1` and message `B` is written to `order-2`, the messages `A` and `B` will also appear on the stream `#order`.
+For example, when a message `A` is written to a stream with the name `order.1` and message `B` is written to `order.2`, the messages `A` and `B` will also appear on the stream `#order`.
 
 Note that the creation and modification of group stream is asynchronously and therefor it might take a short time before message appear on the group stream after they have been written to the concrete stream.
 
-| Stream Name                                  | Group       |
-|----------------------------------------------|-------------|
-| order                                        | _not group_ |
-| order-1                                      | #order      |
-| order-2                                      | #order      |
-| order-e57ab23e-4ce9-42c8-abe0-c771011b5ffe   | #order      |
-| product-1                                    | #product    |
-| product-2                                    | #product    |
-| product-d1536fee-8800-437f-9718-2b86d015f1fe | #product    |
-| shopping-card-1                              | #shopping   |
-| shopping-card-2                              | #shopping   |
-
-> The group of a stream is defined by the first `-` character, stream names like `shopping-card-1`, `shopping-card-2` and `shopping-card-d1536fee-8800-437f-9718-2b86d015f1fe` have the group `#shopping` and not `#shopping-card`!
+| Stream Name                                  | Group          |
+|----------------------------------------------|----------------|
+| order                                        | _not group_    |
+| order.1                                      | #order         |
+| order.2                                      | #order         |
+| order.e57ab23e-4ce9-42c8-abe0-c771011b5ffe   | #order         |
+| product.1                                    | #product       |
+| product.2                                    | #product       |
+| product.d1536fee-8800-437f-9718-2b86d015f1fe | #product       |
+| shopping-card.1                              | #shopping-card |
+| shopping-card.2                              | #shopping-card |
