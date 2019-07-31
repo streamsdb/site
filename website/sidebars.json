@@ -6,7 +6,8 @@
     ],
     "Gettings started": [
       "getting-started-cli",
-      "getting-started-go"
+      "getting-started-go",
+      "getting-started-dotnet"
     ],
     "Reference": [
       "connection-string"
