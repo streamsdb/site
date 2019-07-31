@@ -58,4 +58,4 @@ Note that the creation and modification of group stream is asynchronously and th
 | ShoppingCard-1                               | #ShoppingCard |
 | ShoppingCard-2                               | #ShoppingCard |
 
-> The group of a stream is defined by the first - character, stream names like shopping-card-1, shopping-card-2 and shopping-card-d1536fee-8800-437f-9718-2b86d015f1fe have the group #shopping and not #shopping-card. Therefor we suggest to use the UpperCamelCase naming convention.
+> The group of a stream is defined by the first - character, stream names like `shopping-card-1`, `shopping-card-2` and `shopping-card-d1536fee-8800-437f-9718-2b86d015f1fe` have the group `#shopping` and not `#shopping-card`. Therefor we suggest to use the UpperCamelCase naming convention.
