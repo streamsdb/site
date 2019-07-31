@@ -51,13 +51,13 @@ The group writting is a asynchronous background process. Therefor it might take 
 
 Here is a concrete example: when message `A` is written to a stream `Order.1` and message `B` is written to `Order.2`, both message `A` and `B` will also appear on the stream `#Order`.
 
-| Stream Name                                  | Group         |
-|----------------------------------------------|---------------|
-| Order                                        | _not group_   |
-| Order-1                                      | #Order        |
-| Order-2                                      | #Order        |
-| Order-e57ab23e-4ce9-42c8-abe0-c771011b5ffe   | #Order        |
-| ShoppingCard-1                               | #ShoppingCard |
-| ShoppingCard-2                               | #ShoppingCard |
+| Stream Name                                  | Group           |
+|----------------------------------------------|-----------------|
+| `Order`                                      | _not group_     |
+| `Order-1`                                    | `#Order`        |
+| `Order-2`                                    | `#Order`        |
+| `Order-e57ab23e-4ce9-42c8-abe0-c771011b5ffe` | `#Order`        |
+| `ShoppingCard-1`                             | `#ShoppingCard` |
+| `ShoppingCard-2`                             | `#ShoppingCard` |
 
 > The group of a stream is defined by the first - character, stream names like `shopping-card-1`, `shopping-card-2` and `shopping-card-d1536fee-8800-437f-9718-2b86d015f1fe` have the group `#shopping` and not `#shopping-card`. Therefor we suggest to use the UpperCamelCase naming convention.
