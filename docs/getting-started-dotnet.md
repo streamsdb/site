@@ -1,7 +1,7 @@
 ---
 id: getting-started-dotnet
 title: Getting Started .NET
-sidebar_label: Go
+sidebar_label: .NET
 ---
 
 This tutorial will help you getting started with the [StreamsDB .NET Driver](https://github.com/streamsdb/driver/tree/master/dotnet).
