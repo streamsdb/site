@@ -166,43 +166,30 @@ do
 
 ## Subscriptions
 
-You can also subscribe to a stream for changes. Here is an example that subscribes to the `example` stream
-
-The slice returned by reading operations has a `HasNext` property indicating whether there are more messages available at the time of reading. You can use this indicator to continue reading when there are more messages.
+You can also subscribe to a stream for changes. Here is an example that subscribes to the `example` stream from the beginning. Existing messages will be delivered an the enumerator will block until new messages arrive:
 
 ``` csharp
-// create 1000 messages to write to the stream
-var thousandMessages = Enumerable.Range(1, 1000).Select(n => new MessageInput
+// create a subscription to the example stream
+var enumerator = db.SubscribeStream("example", 1, 10).GetEnumerator()
+
+var cursor = db.SubscribeStream(streamName, -1, 10);
+
+while (await cursor.MoveNext(CancellationToken.None))
 {
-  Type = "string",
-  Value = Encoding.UTF8.GetBytes(n.ToString())
-});
+    var slice = cursor.Current;
+    
+    foreach (var message in slice.Messages)
+    {
+        var text = Encoding.UTF8.GetString(message.Value);
+        Console.WriteLine("received: " + text);
+    }
+}
 
-// write messages to the stream
-await db.AppendStream("example", thousandMessages);
-
-var from = 1;
-Slice slice;
-do
+while (await enumerator.MoveNext(CancellationToken.None))
 {
-  // read from the stream
-  slice = await db.ReadStreamForward("example", from, 100);
-
-  // print messages to console
-  foreach(var message in slice.Messages) {
-    var value = Encoding.UTF8.GetString(message.Value)
-    Console.WriteLine($"[{0}] {1}", message.Position, value);
-  }
-
-  // advance from to the next position
-  from = slice.Next;
-} while (slice.HasNext);
-
-// OUTPUT:
-// 1
-// 2
-// 3
-// ...
-// 999
-// 1000
-```
+    foreach (var message in enumerator.Current.Messages)
+    {
+        var text = Encoding.UTF8.GetString(message.Value);
+        Console.WriteLine("received: " + text);
+    }
+}
