@@ -101,7 +101,7 @@ foreach(var message in slice.Messages) {
 
 ## Read direction
 
-Reading a stream forward means, from older messages to newer ones. Backwards means the oppositve, from newer messages to older ones.
+In the previous example we read from a stream in the forwards, meaning from older messages to newer ones. StreamsDB also support reading in a backwards direction, meaning from newer messages to older ones.
 
 Here is an example that reads the `example` stream backwards. We specify an offset position of `-1`. A negative position is a position relative from the streams head where the last message in a stream is at position `-1`.
 
