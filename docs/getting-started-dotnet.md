@@ -54,7 +54,7 @@ var db = client.DB("database_name");
 
 With the handle to a database you can append messages to a stream in that database. Streams do no have to be created explicitly and will be created by StreamsDB whenever the first message is written to it.
 
-Here we write 3 messages with the string values, `hello`, `world` and `!` to the stream `example`.
+Here we write 3 messages with the string values, `hello`, `world` and `!` to the stream `example`. 
 
 ``` csharp
 // append 3 messages to stream
@@ -76,7 +76,7 @@ var from = await db.AppendStream("example",
   });
 ```
 
-The `AppendStream()` method returns the position of the first message that has been written to the stream. All messages in a single append operation are written directly after eachother.
+The `AppendStream()` method returns the position of the first message that has been written to the stream. In StreamsDB the append operation is an [atomic operation](https://en.wikipedia.org/wiki/Atomicity_(database_systems)), either all the messages are written or none in case of an error. Also on a succesful write all messages in a single append operation are written directly after eachother. In other words, if the example from above returned position `1`, the next message `world` is at position `2` and `!` at position `3`.
 
 ## Reading from a stream
 
