@@ -72,7 +72,7 @@ The `AppendStream()` method returns the position of the first message that has b
 Use the `ReadStreamForward()` to read from a stream in the forward direction. You must at least specify the stream name and the position (inclusive) you want to start reading from.
 
 ``` csharp
-var slice = await db.ReadStreamForward(streamName, 1)
+var slice = await db.ReadStreamForward(streamName, 1, 10);
 foreach(var message in slice.Messages) {
   var valueAsText = Encoding.UTF8.GetString(message.Value);
   Console.WriteLine($"[{message.Position}] {valueAsText}");
@@ -89,7 +89,7 @@ foreach(var message in slice.Messages) {
 You can also read a stream in the opposite direction with `ReadStreamBackward()`:
 
 ``` csharp
-var slice = await db.ReadStreamBackward(streamName, -1)
+var slice = await db.ReadStreamBackward(streamName, -1, 10);
 foreach(var message in slice.Messages) {
   var valueAsText = Encoding.UTF8.GetString(message.Value);
   Console.WriteLine($"[{message.Position}] {valueAsText}");
