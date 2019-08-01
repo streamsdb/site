@@ -28,13 +28,13 @@ using StreamsDB.Client;
 
 To connect to a StreamsDB database we use the StreamsDBClient class. The constructor of this class accepts a [connection string](/docs/connection-string).
 
-Once connected, you can get a handle to the a database by using the `DB()` method. Pass a database name, or an empty string if you want to use the database from the connection string.
+Once connected, you can get a handle to the a database by using the `DB()` method:
 
 ``` csharp
 // create client connection
 var client = new StreamsDBClient("sdb://eu.streamsdb.io:443/database_name");
 
-// get handle to database
+// get handle to database from the connection string
 var db = client.DB();
 ```
 
@@ -44,7 +44,7 @@ Alternatively you can leave the database from the connection string and pass it 
 // create client connection
 var client = new StreamsDBClient("sdb://eu.streamsdb.io:443/");
 
-// get handle to database
+// get handle to specified database
 var db = client.DB("database_name");
 ```
 
