@@ -53,15 +53,19 @@ With the handle to a database you can append messages to a stream in that databa
 Here we write 3 messages with the string values, `hello`, `world` and `!` to the stream `example`.
 
 ``` csharp
+// append 3 messages to stream
 var from = await db.AppendStream("example",
+  // 1
   new MessageInput {
     Type = "string",
     Value = Encoding.UTF8.GetBytes("hello")
   },
+  // 2
   new MessageInput {
     Type = "string",
     Value = Encoding.UTF8.GetBytes("world")
   },
+  // 3
   new MessageInput {
     Type = "string",
     Value = Encoding.UTF8.GetBytes("!")
@@ -116,6 +120,49 @@ foreach(var message in slice.Messages) {
 ```
 
 ## Continuation
+
+The slice returned by reading operations has a `HasNext` property indicating whether there are more messages available at the time of reading. You can use this indicator to continue reading when there are more messages.
+
+``` csharp
+// create 1000 messages to write to the stream
+var thousandMessages = Enumerable.Range(1, 1000).Select(n => new MessageInput
+{
+  Type = "string",
+  Value = Encoding.UTF8.GetBytes(n.ToString())
+});
+
+// write messages to the stream
+await db.AppendStream("example", thousandMessages);
+
+var from = 1;
+Slice slice;
+do
+{
+  // read from the stream
+  slice = await db.ReadStreamForward("example", from, 100);
+
+  // print messages to console
+  foreach(var message in slice.Messages) {
+    var value = Encoding.UTF8.GetString(message.Value)
+    Console.WriteLine($"[{0}] {1}", message.Position, value);
+  }
+
+  // advance from to the next position
+  from = slice.Next;
+} while (slice.HasNext);
+
+// OUTPUT:
+// 1
+// 2
+// 3
+// ...
+// 999
+// 1000
+```
+
+## Subscriptions
+
+You can also subscribe to a stream for changes. Here is an example that subscribes to the `example` stream
 
 The slice returned by reading operations has a `HasNext` property indicating whether there are more messages available at the time of reading. You can use this indicator to continue reading when there are more messages.
 
