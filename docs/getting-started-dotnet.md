@@ -33,6 +33,8 @@ Once connected, you can get a handle to the a database by using the `DB()` metho
 ``` csharp
 // create client connection
 var client = new StreamsDBClient("sdb://eu.streamsdb.io:443/database_name");
+
+// get handle to database
 var db = client.DB();
 ```
 
@@ -41,6 +43,8 @@ Alternatively you can leave the database from the connection string and pass it 
 ``` csharp
 // create client connection
 var client = new StreamsDBClient("sdb://eu.streamsdb.io:443/");
+
+// get handle to database
 var db = client.DB("database_name");
 ```
 
