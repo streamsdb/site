@@ -153,7 +153,7 @@ class Index extends React.Component {
             title: 'Transaction support',
           },
           {
-            content: 'StreamsDB has client support for Go, .NET, NodeJS and Java.',
+            content: 'StreamsDB has client support for [Go](/docs/getting-started-go), [.NET](https://streamsdb.io/docs/getting-started-dotnet), NodeJS and Java.',
             image: `${baseUrl}img/undraw_Designer_by46.svg`,
             imageAlign: 'top',
             title: 'Major platform support',
