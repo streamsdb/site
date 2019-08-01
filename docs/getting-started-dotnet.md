@@ -28,19 +28,23 @@ using StreamsDB.Client;
 
 To connect to a StreamsDB database we use the StreamsDBClient class. The constructor of this class accepts a [StreamsDB connection string](/docs/connection-string).
 
-``` csharp
-var client = new StreamsDBClient("sdb://eu.streamsdb.io:443/database_name");
-```
-
-> There should be a single client connection to a StreamsDB server for you entire process. In other words, you should create the client connection on startup and there is no need to create a new client connection for each request.
-
-## Database
-
 Once connected, you can get a handle to the a database by using the `DB()` method. Pass a database name, or an empty string if you want to use the database from the connection string.
 
 ``` csharp
+// create client connection
+var client = new StreamsDBClient("sdb://eu.streamsdb.io:443/database_name");
 var db = client.DB();
 ```
+
+Alternatively you can leave the database from the connection string and pass it to the `DB()` method:
+
+``` csharp
+// create client connection
+var client = new StreamsDBClient("sdb://eu.streamsdb.io:443/");
+var db = client.DB("database_name");
+```
+
+> There should be a single client connection to a StreamsDB server for you entire process. In other words, you should create the client connection on startup and there is no need to create a new client connection for each request.
 
 ## Append to a stream
 
@@ -50,18 +54,15 @@ Here we write 3 messages with the string values, `hello`, `world` and `!` to the
 
 ``` csharp
 var from = await db.AppendStream("example",
-  new MessageInput
-  {
+  new MessageInput {
     Type = "string",
     Value = Encoding.UTF8.GetBytes("hello")
   },
-  new MessageInput
-  {
+  new MessageInput {
     Type = "string",
     Value = Encoding.UTF8.GetBytes("world")
   },
-  new MessageInput
-  {
+  new MessageInput {
     Type = "string",
     Value = Encoding.UTF8.GetBytes("!")
   });
@@ -72,16 +73,17 @@ The `AppendStream()` method returns the position of the first message that has b
 ## Reading from a stream
 
 Use the `ReadStreamForward()` to read from a stream in the forward direction.
-In this example we read the `example` stream from its first message with a maximum of 10 messages.
+In the following example we read the `example` stream from the position we got back from the `AppendStream()` method from the previous example and limit the result to a maximum of 10 messages.
 
 ``` csharp
-var slice = await db.ReadStreamForward("example", 1, 10);
-foreach(var message in slice.Messages) {
-  var valueAsText = Encoding.UTF8.GetString(message.Value);
-  Console.WriteLine($"[{message.Position}] {valueAsText}");
-}
+// read from the example stream
+var slice = await db.ReadStreamForward("example", from, 10);
 
-Console.WriteLine($"HasNext: {slice.HasNext");
+// print messages to console
+foreach(var message in slice.Messages) {
+  var value = Encoding.UTF8.GetString(message.Value)
+  Console.WriteLine($"[{0}] {1}", message.Position, value);
+}
 
 // OUTPUT:
 // [1] hello
@@ -89,15 +91,22 @@ Console.WriteLine($"HasNext: {slice.HasNext");
 // [3] !
 ```
 
-## Opposite direction
+## Read direction
 
-You can also read a stream in the opposite direction with `ReadStreamBackward()`. Here we specify `-1` as the position to read from. A negative position represents a relative position from the end where the last message is `-1`. In the slice that is returned, the message positions are not relative, but exact.
+Reading a stream forward means, from older messages to newer ones. Backwards means the oppositve, from newer messages to older ones.
+
+Here is an example that reads the `example` stream backwards. We specify an offset position of `-1`. A negative position is a position relative from the streams head where the last message in a stream is at position `-1`.
+
+In the slice that is returned, the message positions are not relative, but exact.
 
 ``` csharp
+// read from the example stream
 var slice = await db.ReadStreamBackward("example", -1, 10);
+
+// print messages to console
 foreach(var message in slice.Messages) {
-  var valueAsText = Encoding.UTF8.GetString(message.Value);
-  Console.WriteLine($"[{message.Position}] {valueAsText}");
+  var value = Encoding.UTF8.GetString(message.Value)
+  Console.WriteLine($"[{0}] {1}", message.Position, value);
 }
 
 // OUTPUT:
@@ -106,32 +115,36 @@ foreach(var message in slice.Messages) {
 // [1] hello
 ```
 
-## Continue reading
+## Continuation
 
-The slice returned by `ReadStreamForward` and `ReadStreamBackward` has a `HasNext` property indicating whether there are more messages available at the time of reading. You can use this indicator to continue reading if there are more messages available.
+The slice returned by reading operations has a `HasNext` property indicating whether there are more messages available at the time of reading. You can use this indicator to continue reading when there are more messages.
 
 ``` csharp
-// write 1000 messages to the stream
+// create 1000 messages to write to the stream
 var thousandMessages = Enumerable.Range(1, 1000).Select(n => new MessageInput
 {
   Type = "string",
   Value = Encoding.UTF8.GetBytes(n.ToString())
 });
 
-db.AppendStream("example", thousandMessages...);
+// write messages to the stream
+await db.AppendStream("example", thousandMessages);
 
-Slice slice;
 var from = 1;
+Slice slice;
 do
 {
-    slice = await db.ReadStreamForward("example", from, 100);
+  // read from the stream
+  slice = await db.ReadStreamForward("example", from, 100);
 
-    foreach(var message in slice.Messages) {
-      var valueAsText = Encoding.UTF8.GetString(message.Value);
-      Console.WriteLine(valueAsText);
-    }
+  // print messages to console
+  foreach(var message in slice.Messages) {
+    var value = Encoding.UTF8.GetString(message.Value)
+    Console.WriteLine($"[{0}] {1}", message.Position, value);
+  }
 
-    from = slice.Next;
+  // advance from to the next position
+  from = slice.Next;
 } while (slice.HasNext);
 
 // OUTPUT:
@@ -139,7 +152,6 @@ do
 // 2
 // 3
 // ...
-// 998
 // 999
 // 1000
 ```
