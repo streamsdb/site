@@ -26,7 +26,7 @@ using StreamsDB.Client;
 
 ## Connecting
 
-To connect to a StreamsDB database we use the StreamsDBClient class. The constructor of this class accepts a [StreamsDB connection string](/docs/connection-string).
+To connect to a StreamsDB database we use the StreamsDBClient class. The constructor of this class accepts a [connection string](/docs/connection-string).
 
 Once connected, you can get a handle to the a database by using the `DB()` method. Pass a database name, or an empty string if you want to use the database from the connection string.
 
