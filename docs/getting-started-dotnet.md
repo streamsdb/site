@@ -78,44 +78,6 @@ var from = await db.AppendStream("example",
 
 The `AppendStream()` method returns the position of the first message that has been written to the stream. In StreamsDB the append operation is an [atomic operation](https://en.wikipedia.org/wiki/Atomicity_(database_systems)), either all the messages are written or none in case of an error. Also on a succesful write all messages in a single append operation are written directly after eachother. In other words, if the example from above returned position `1`, the next message `world` is at position `2` and `!` at position `3`.
 
-## Optimistic concurrency
-
-Writing supports an optimistic concurrency check on the version of the stream to which events are written. With this check you can make sure your messages are not written if a stream has changed since the last time you read from it.
-
-There is an overload of the `AppendStream()` method that accepts a `StreamStateExpection`. You can use this parameter to set the expectation of the stream. Use one of the following methods of the `VersionExpectation` class to specify an expection:
-
-| Method                                   | Description                                                   |
-|------------------------------------------|---------------------------------------------------------------|
-| `VersionExpection.Nothing()`             | Skip optimisic concurrency check                              |
-| `VersionExpection.Version(version long)` | Set expectation to expect the stream at the specified version |
-
-Here is an example that writes a strict monotonicly increasing of number to a stream. Because of the `VersionExpectation` this example could be ran concurrently and the numbers on the steam will still be monotonicly increasing:
-
-```
-var nextNumber int
-var expectation StreamStateExpectation
-
-while(true) {
-  // read the last message from the stream
-  var (message, ok) = await db.ReadMessageFromStream("sequence", -1);
-
-  if(ok) {
-    // get the number from the value of the last message and increase
-    nextNumber = BitConverter.ToInt32(message.Value) + 1;
-
-    // expect stream version to be at the version we just read
-    expectation = VersionExpectation.Version(message.Position);
-  } else {
-    nextNumber = 0;
-    expectation = VersionExpectation.Version(0);
-  }
-
-  db.AppendStream("sequence", VersionExpectation.Version(0), new MessageInput{
-    Value: BitConverter.GetBytes(nextNumber)
-  });
-}
-```
-
 ## Reading from a stream
 
 Use the `ReadStreamForward()` to read from a stream in the forward direction.
@@ -219,6 +181,44 @@ while (await cursor.MoveNext(CancellationToken.None))
   // print message to console
   var value = Encoding.UTF8.GetString(message.Value)
   Console.WriteLine($"[{0}] {1}", message.Position, value);
+}
+```
+
+## Optimistic concurrency
+
+Writing supports an optimistic concurrency check on the version of the stream to which events are written. With this check you can make sure your messages are not written if a stream has changed since the last time you read from it.
+
+There is an overload of the `AppendStream()` method that accepts a `StreamStateExpection`. You can use this parameter to set the expectation of the stream. Use one of the following methods of the `VersionExpectation` class to specify an expection:
+
+| Method                                   | Description                                                   |
+|------------------------------------------|---------------------------------------------------------------|
+| `VersionExpection.Nothing()`             | Skip optimisic concurrency check                              |
+| `VersionExpection.Version(version long)` | Set expectation to expect the stream at the specified version |
+
+Here is an example that writes a strict monotonicly increasing of number to a stream. Because of the `VersionExpectation` this example could be ran concurrently and the numbers on the steam will still be monotonicly increasing:
+
+```
+var nextNumber int
+var expectation StreamStateExpectation
+
+while(true) {
+  // read the last message from the stream
+  var (message, ok) = await db.ReadMessageFromStream("sequence", -1);
+
+  if(ok) {
+    // get the number from the value of the last message and increase
+    nextNumber = BitConverter.ToInt32(message.Value) + 1;
+
+    // expect stream version to be at the version we just read
+    expectation = VersionExpectation.Version(message.Position);
+  } else {
+    nextNumber = 0;
+    expectation = VersionExpectation.Version(0);
+  }
+
+  db.AppendStream("sequence", VersionExpectation.Version(0), new MessageInput{
+    Value: BitConverter.GetBytes(nextNumber)
+  });
 }
 ```
 
