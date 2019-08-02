@@ -56,7 +56,7 @@ const siteConfig = {
 
   /* path to images for header/footer */
   headerIcon: 'img/logo.svg',
-  footerIcon: 'img/logo-blue-bg.svg',
+  footerIcon: 'img/logo.svg',
   favicon: 'img/favicon.ico',
 
   gaTrackingId: 'UA-143880638-1',
