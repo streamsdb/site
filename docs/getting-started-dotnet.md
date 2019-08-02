@@ -190,16 +190,17 @@ Writing supports an optimistic concurrency check on the version of the stream to
 
 There is an overload of the `AppendStream()` method that accepts a `StreamStateExpection`. You can use this parameter to set the expectation of the stream. Use one of the following methods of the `VersionExpectation` class to specify an expection:
 
-| Method                                   | Description                                                   |
-|------------------------------------------|---------------------------------------------------------------|
-| `VersionExpection.Nothing()`             | Skip optimisic concurrency check                              |
-| `VersionExpection.Version(version long)` | Set expectation to expect the stream at the specified version |
+| Method                                          | Description                                                       |
+|-------------------------------------------------|-------------------------------------------------------------------|
+| `ConcurrencyCheck.Skip()`                       | skip optimisic concurrency check                                  |
+| `ConcurrencyCheck.Version(long verion)`         | expect the stream at the specified version                        |
+| `ConcurrencyCheck.LastMessage(Message message)` | expect the last message on the stream to be the specified message |
 
-Here is an example that writes a strict monotonicly increasing of number to a stream. Because of the `VersionExpectation` this example could be ran concurrently and the numbers on the steam will still be monotonicly increasing:
+Here is an example that writes a strict monotonicly increasing of number to a stream. Because of the `ConcurrencyCheck` this example could be ran concurrently and the numbers on the steam will still be monotonicly increasing:
 
 ```
 var nextNumber int
-var expectation StreamStateExpectation
+var concurrencyCheck ConcurrencyCheck
 
 while(true) {
   // read the last message from the stream
@@ -210,13 +211,13 @@ while(true) {
     nextNumber = BitConverter.ToInt32(message.Value) + 1;
 
     // expect the message we read to be the last message on the stream
-    expectation = VersionExpectation.LastMessage(message);
+    concurrencyCheck = VersionExpectation.LastMessage(message);
   } else {
     nextNumber = 0;
-    expectation = VersionExpectation.Version(0);
+    concurrencyCheck = VersionExpectation.Version(0);
   }
 
-  db.AppendStream("sequence", VersionExpectation.Version(0), new MessageInput{
+  db.AppendStream("sequence", concurrencyCheck, new MessageInput{
     Value: BitConverter.GetBytes(nextNumber)
   });
 }
