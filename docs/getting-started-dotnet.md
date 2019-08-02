@@ -204,9 +204,9 @@ var check ConcurrencyCheck
 
 while(true) {
   // read the last message from the stream
-  var (message, ok) = await db.ReadMessageFromStream("sequence", -1);
+  var (message, found) = await db.ReadMessageFromStream("sequence", -1);
 
-  if(ok) {
+  if(found) {
     // get the number from the value of the last message and increase
     nextNumber = BitConverter.ToInt32(message.Value) + 1;
 
