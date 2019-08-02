@@ -8,7 +8,7 @@ This tutorial will help you getting started with the [StreamsDB .NET Driver](htt
 
 ## Installation
 
-The simplest way to get the StreamsDB .NET Driver is by installing the [StreamsDB.Driver NuGet package](https://www.nuget.org/packages/StreamsDB.Driver/).
+The simplest way to get the StreamsDB .NET Driver is by installing the [StreamsDB.Driver package](https://www.nuget.org/packages/StreamsDB.Driver/).
 
 ``` bash
 dotnet add package StreamsDB.Client --version 0.9.1-dev.13
@@ -172,12 +172,20 @@ You can also subscribe to a stream for changes. Here is an example that subscrib
 // create a subscription to the example stream
 var cursor = db.SubscribeStream(streamName, -1, 10);
 
+// move to the next available message
 while (await cursor.MoveNext(CancellationToken.None))
 {
-    foreach (var message in cursor.Current.Messages)
-    {
-        var text = Encoding.UTF8.GetString(message.Value);
-        Console.WriteLine("received: " + text);
-    }
+  // get the current message from the cursor
+  var message = cursor.Current;
+
+  // print message to console
+  var value = Encoding.UTF8.GetString(message.Value)
+  Console.WriteLine($"[{0}] {1}", message.Position, value);
 }
 ```
+
+## Resources
+
+* [StreamsDB.Driver package](https://www.nuget.org/packages/StreamsDB.Driver/)
+* [StreamsDB.Driver source code](https://github.com/streamsdb/driver/tree/master/dotnet)
+* [StreamsDB.Driver issues](https://github.com/streamsdb/driver/issues?q=is%3Aopen+is%3Aissue+label%3Adotnet)
