@@ -28,7 +28,7 @@ using StreamsDB.Client;
 
 To connect to a StreamsDB database we use the StreamsDBClient class. The constructor of this class accepts a [connection string](/docs/connection-string).
 
-Once connected, you can get a handle to the a database by using the `DB()` method:
+Once connected, you can get a handle to the database by using the `DB()` method:
 
 ``` csharp
 // create client connection
