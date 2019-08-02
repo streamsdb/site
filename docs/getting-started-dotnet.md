@@ -209,8 +209,8 @@ while(true) {
     // get the number from the value of the last message and increase
     nextNumber = BitConverter.ToInt32(message.Value) + 1;
 
-    // expect stream version to be at the version we just read
-    expectation = VersionExpectation.Version(message.Position);
+    // expect the message we read to be the last message on the stream
+    expectation = VersionExpectation.LastMessage(message);
   } else {
     nextNumber = 0;
     expectation = VersionExpectation.Version(0);
