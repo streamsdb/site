@@ -190,11 +190,11 @@ Writing supports an optimistic concurrency check on the version of the stream to
 
 There is an overload of the `AppendStream()` method that accepts a `StreamStateExpection`. You can use this parameter to set the expectation of the stream. Use one of the following methods of the `VersionExpectation` class to specify an expection:
 
-| Method                                          | Description                                                       |
-|-------------------------------------------------|-------------------------------------------------------------------|
-| `ConcurrencyCheck.Skip()`                       | skip optimisic concurrency check                                  |
-| `ConcurrencyCheck.Version(long verion)`         | expect the stream at the specified version                        |
-| `ConcurrencyCheck.LastMessage(Message message)` | expect the last message on the stream to be the specified message |
+| Method                                  | Description                                                       |
+|-----------------------------------------|-------------------------------------------------------------------|
+| `ConcurrencyCheck.Skip()`               | skip optimisic concurrency check                                  |
+| `ConcurrencyCheck.Version(long)`        | expect the stream at the specified version                        |
+| `ConcurrencyCheck.LastMessage(Message)` | expect the last message on the stream to be the specified message |
 
 Here is an example that writes a strict monotonicly increasing of number to a stream. Because of the `ConcurrencyCheck` this example could be ran concurrently and the numbers on the steam will still be monotonicly increasing:
 
