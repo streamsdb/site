@@ -166,30 +166,18 @@ do
 
 ## Subscriptions
 
-You can also subscribe to a stream for changes. Here is an example that subscribes to the `example` stream from the beginning. Existing messages will be delivered an the enumerator will block until new messages arrive:
+You can also subscribe to a stream for changes. Here is an example that subscribes to the `example` stream from the beginning. Existing messages will be delivered immediately and the enumerator will block on `MoveNext()` till new messages are written to the stream.
 
 ``` csharp
 // create a subscription to the example stream
-var enumerator = db.SubscribeStream("example", 1, 10).GetEnumerator()
-
 var cursor = db.SubscribeStream(streamName, -1, 10);
 
 while (await cursor.MoveNext(CancellationToken.None))
 {
-    var slice = cursor.Current;
-    
-    foreach (var message in slice.Messages)
+    foreach (var message in cursor.Current.Messages)
     {
         var text = Encoding.UTF8.GetString(message.Value);
         Console.WriteLine("received: " + text);
     }
 }
-
-while (await enumerator.MoveNext(CancellationToken.None))
-{
-    foreach (var message in enumerator.Current.Messages)
-    {
-        var text = Encoding.UTF8.GetString(message.Value);
-        Console.WriteLine("received: " + text);
-    }
-}
+```
