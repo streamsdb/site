@@ -188,7 +188,7 @@ while (await cursor.MoveNext(CancellationToken.None))
 
 Writing supports an optimistic concurrency check on the version of the stream to which events are written. With this check you can make sure your messages are not written if a stream has changed since the last time you read from it.
 
-There is an overload of the `AppendStream()` method that accepts a `StreamStateExpection`. You can use this parameter to set the expectation of the stream. Use one of the following methods of the `VersionExpectation` class to specify an expection:
+There is an overload of the `AppendStream()` method that accepts a `ConcurrencyCheck`. You can use this parameter to set the expectation of the stream. Use one of the following methods of the `ConcurrencyCheck` class to specify an expection:
 
 | Method                                  | Description                                                       |
 |-----------------------------------------|-------------------------------------------------------------------|
@@ -200,7 +200,7 @@ Here is an example that writes a strict monotonicly increasing of number to a st
 
 ```
 var nextNumber int
-var concurrencyCheck ConcurrencyCheck
+var check ConcurrencyCheck
 
 while(true) {
   // read the last message from the stream
@@ -214,7 +214,7 @@ while(true) {
     concurrencyCheck = VersionExpectation.LastMessage(message);
   } else {
     nextNumber = 0;
-    concurrencyCheck = VersionExpectation.Version(0);
+    check = VersionExpectation.Version(0);
   }
 
   db.AppendStream("sequence", concurrencyCheck, new MessageInput{
