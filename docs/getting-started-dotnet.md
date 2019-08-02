@@ -99,7 +99,7 @@ foreach(var message in slice.Messages) {
 // [3] !
 ```
 
-## Read direction
+## Read backwards
 
 In the previous example we read from a stream in the forwards, meaning from older messages to newer ones. StreamsDB also support reading in a backwards direction, meaning from newer messages to older ones.
 
