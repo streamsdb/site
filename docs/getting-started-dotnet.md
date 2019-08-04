@@ -190,11 +190,11 @@ Writing supports an optimistic concurrency check on the version of the stream to
 
 There is an overload of the `AppendStream()` method that accepts a `ConcurrencyCheck`. You can use this parameter to set the expectation of the stream. Use one of the following methods of the `ConcurrencyCheck` class to specify an expection:
 
-| Method                                  | Description                                                       |
-|-----------------------------------------|-------------------------------------------------------------------|
-| `ConcurrencyCheck.Skip()`               | skip optimisic concurrency check                                  |
-| `ConcurrencyCheck.Version(long)`        | expect the stream at the specified version                        |
-| `ConcurrencyCheck.LastMessage(Message)` | expect the last message on the stream to be the specified message |
+| Method                                        | Description                                                       |
+|-----------------------------------------------|-------------------------------------------------------------------|
+| `ConcurrencyCheck.Skip()`                     | skip optimisic concurrency check                                  |
+| `ConcurrencyCheck.ExpectVersion(long)`        | expect the stream at the specified version                        |
+| `ConcurrencyCheck.ExpectLastMessage(Message)` | expect the last message on the stream to be the specified message |
 
 Here is an example that writes a strict monotonicly increasing of number to a stream. Because of the `ConcurrencyCheck` this example could be ran concurrently and the numbers on the steam will still be monotonicly increasing:
 
@@ -202,24 +202,38 @@ Here is an example that writes a strict monotonicly increasing of number to a st
 var nextNumber int
 var check ConcurrencyCheck
 
-while(true) {
-  // read the last message from the stream
-  var (message, found) = await db.ReadMessageFromStream("sequence", -1);
+int nextNumber;
+ConcurrencyCheck check;
 
-  if(found) {
+while (true) {
+  // read the last message from the stream
+  var (message, found) = await db.ReadMessageFromStream("exact-sequence", -1);
+
+  if (found)
+  {
     // get the number from the value of the last message and increase
     nextNumber = BitConverter.ToInt32(message.Value) + 1;
 
     // expect the message we read to be the last message on the stream
-    concurrencyCheck = VersionExpectation.LastMessage(message);
-  } else {
+    check = ConcurrencyCheck.ExpectLastMessage(message);
+  }
+  else
+  {
     nextNumber = 0;
-    check = VersionExpectation.Version(0);
+    check = ConcurrencyCheck.ExpectVersion(0);
   }
 
-  db.AppendStream("sequence", concurrencyCheck, new MessageInput{
-    Value: BitConverter.GetBytes(nextNumber)
-  });
+  try {
+    await db.AppendStream("exact-sequence", check, new MessageInput
+    {
+      Type = "int32",
+      Value = BitConverter.GetBytes(nextNumber)
+    });
+  } catch(OperationAbortedException caught) {
+    // The operation was aborted, typically due to
+    // a concurrency issue such as a concurrency check failure.
+    continue;
+  }
 }
 ```
 
