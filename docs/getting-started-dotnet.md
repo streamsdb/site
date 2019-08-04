@@ -24,7 +24,7 @@ The root namespace of the package is StreamsDB.Client:
 using StreamsDB.Driver;
 ```
 
-## Connecting
+## Connecting to StreamsDB
 
 To connect to a StreamsDB database we use the StreamsDBClient class. The constructor of this class accepts a [connection string](/docs/connection-string).
 
@@ -99,7 +99,7 @@ foreach(var message in slice.Messages) {
 // [3] !
 ```
 
-## Read backwards
+## Read stream backwards
 
 In the previous example we read from a stream in the forwards, meaning from older messages to newer ones. StreamsDB also support reading in a backwards direction, meaning from newer messages to older ones.
 
@@ -123,7 +123,7 @@ foreach(var message in slice.Messages) {
 // [1] hello
 ```
 
-## Continuation
+## Read continuation
 
 The slice returned by reading operations has a `HasNext` property indicating whether there are more messages available at the time of reading. You can use this indicator to continue reading when there are more messages.
 
@@ -164,7 +164,7 @@ do
 // 1000
 ```
 
-## Subscriptions
+## Subscribe to a stream
 
 You can also subscribe to a stream for changes. Here is an example that subscribes to the `example` stream from the beginning. Existing messages will be delivered immediately and the enumerator will block on `MoveNext()` till new messages are written to the stream.
 
