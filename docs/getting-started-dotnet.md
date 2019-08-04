@@ -11,7 +11,7 @@ This tutorial will help you get started with the [StreamsDB .NET Driver](https:/
 The simplest way to get the StreamsDB .NET Driver is by installing the [StreamsDB.Driver package](https://www.nuget.org/packages/StreamsDB.Driver/).
 
 ``` bash
-dotnet add package StreamsDB.Client --version 0.9.1-dev.13
+dotnet add package StreamsDB.Client --version 0.9.1-dev.15
 ```
 
 > The StreamsDB.Client package has a SemVer 2.0.0 package version.
