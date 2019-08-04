@@ -199,9 +199,6 @@ There is an overload of the `AppendStream()` method that accepts a `ConcurrencyC
 Here is an example that writes a strict monotonicly increasing of number to a stream. Because of the `ConcurrencyCheck` this example could be ran concurrently and the numbers on the steam will still be monotonicly increasing:
 
 ```
-var nextNumber int
-var check ConcurrencyCheck
-
 int nextNumber;
 ConcurrencyCheck check;
 
