@@ -48,11 +48,11 @@ var client = new StreamsDBClient("sdb://eu.streamsdb.io:443/");
 var db = client.DB("database_name");
 ```
 
-> There should be a single client connection to a StreamsDB server for you entire process. In other words, you should create the client connection on startup and there is no need to create a new client connection for each request.
+> There should be a single client connection to a StreamsDB server for your entire process. In other words, you should create the client connection on startup and there is no need to create a new client connection for each request.
 
 ## Append to a stream
 
-With the handle to a database you can append messages to a stream in that database. Streams do no have to be created explicitly and will be created by StreamsDB whenever the first message is written to it.
+With the handle to a database, you can append messages to a stream in that database. Streams do not have to be created explicitly and will be created by StreamsDB whenever the first message is written to it.
 
 Here we write 3 messages with the string values, `hello`, `world` and `!` to the stream `example`. 
 
@@ -76,7 +76,7 @@ var from = await db.AppendStream("example",
   });
 ```
 
-The `AppendStream()` method returns the position of the first message that has been written to the stream. In StreamsDB the append operation is an [atomic operation](https://en.wikipedia.org/wiki/Atomicity_(database_systems)), either all the messages are written or none in case of an error. Also on a succesful write all messages in a single append operation are written directly after eachother. In other words, if the example from above returned position `1`, the next message `world` is at position `2` and `!` at position `3`.
+The `AppendStream()` method returns the position of the first message that has been written to the stream. In StreamsDB the append operation is an [atomic operation](https://en.wikipedia.org/wiki/Atomicity_(database_systems)), either all the messages are written or none in case of an error. Also on a successful write, all messages in a single append operation are written directly after each other. In other words, if the example from above returned position `1`, the next message `world` is at position `2` and `!` at position `3`.
 
 ## Reading from a stream
 
@@ -101,9 +101,9 @@ foreach(var message in slice.Messages) {
 
 ## Read stream backwards
 
-In the previous example we read from a stream in the forwards, meaning from older messages to newer ones. StreamsDB also support reading in a backwards direction, meaning from newer messages to older ones.
+In the previous example, we read from a stream in the forwards, meaning from older messages to newer ones. StreamsDB also supports reading in a backward direction, meaning from newer messages to older ones.
 
-Here is an example that reads the `example` stream backwards. We specify an offset position of `-1`. A negative position is a position relative from the streams head where the last message in a stream is at position `-1`.
+Here is an example that reads the `example` stream backward. We specify an offset position of `-1`. A negative position is a position relative from the streams head where the last message in a stream is at position `-1`.
 
 In the slice that is returned, the message positions are not relative, but exact.
 
@@ -186,17 +186,17 @@ while (await cursor.MoveNext(CancellationToken.None))
 
 ## Optimistic concurrency
 
-Writing supports an optimistic concurrency check on the version of the stream to which events are written. With this check you can make sure your messages are not written if a stream has changed since the last time you read from it.
+Writing supports an optimistic concurrency check on the version of the stream to which events are written. With this check, you can make sure your messages are not written if a stream has changed since the last time you read from it.
 
-There is an overload of the `AppendStream()` method that accepts a `ConcurrencyCheck`. You can use this parameter to set the expectation of the stream. Use one of the following methods of the `ConcurrencyCheck` class to specify an expection:
+There is an overload of the `AppendStream()` method that accepts a `ConcurrencyCheck`. You can use this parameter to set the expectation of the stream. Use one of the following methods of the `ConcurrencyCheck` class to specify an optimistic concurrency check:
 
 | Method                                        | Description                                                       |
 |-----------------------------------------------|-------------------------------------------------------------------|
-| `ConcurrencyCheck.Skip()`                     | skip optimisic concurrency check                                  |
+| `ConcurrencyCheck.Skip()`                     | skip optimistic concurrency check                                  |
 | `ConcurrencyCheck.ExpectVersion(long)`        | expect the stream at the specified version                        |
 | `ConcurrencyCheck.ExpectLastMessage(Message)` | expect the last message on the stream to be the specified message |
 
-Here is an example that writes a strict monotonicly increasing of number to a stream. Because of the `ConcurrencyCheck` this example could be ran concurrently and the numbers on the steam will still be monotonicly increasing:
+Here is an example that writes a strict monotonically increasing number to a stream. Because of the `ConcurrencyCheck` this example could be run concurrently and the numbers on the steam will still be monotonicly increasing:
 
 ```
 int nextNumber;
