@@ -10,7 +10,8 @@
       "getting-started-dotnet"
     ],
     "Reference": [
-      "connection-string"
+      "connection-string",
+      "dotnet-api-reference"
     ]
   }
 }
