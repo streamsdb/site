@@ -192,7 +192,7 @@ There is an overload of the `AppendStream()` method that accepts a `ConcurrencyC
 
 | Method                                        | Description                                                       |
 |-----------------------------------------------|-------------------------------------------------------------------|
-| `ConcurrencyCheck.Skip()`                     | skip optimistic concurrency check                                  |
+| `ConcurrencyCheck.Skip()`                     | skip optimistic concurrency check                                 |
 | `ConcurrencyCheck.ExpectVersion(long)`        | expect the stream at the specified version                        |
 | `ConcurrencyCheck.ExpectLastMessage(Message)` | expect the last message on the stream to be the specified message |
 
