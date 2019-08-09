@@ -80,7 +80,7 @@ The `AppendStream()` method returns the position of the first message that has b
 
 ## Reading from a stream
 
-Use the `ReadStreamForward()` to read from a stream in the forward direction.
+Use the `ReadStreamForward()` method to read from a stream in the forward direction.
 In the following example we read the `example` stream from the position we got back from the `AppendStream()` method from the previous example and limit the result to a maximum of 10 messages.
 
 ``` csharp
