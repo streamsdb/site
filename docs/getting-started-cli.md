@@ -56,7 +56,7 @@ echo 'alias sdbcli="docker run --env="SDB_HOST=\$SDB_HOST" \
 >> $HOME/.zshrc
 ```
 
-## FISH
+### FISH
 
 ``` SHELL 
 echo 'alias sdbcli="docker run --env="SDB_HOST=\$SDB_HOST" \
