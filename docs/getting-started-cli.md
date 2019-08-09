@@ -19,12 +19,12 @@ StreamDB comes with a command line interface tool called  `sdbcli` . This docume
 The easiest way to use the `sdbcli` docker image is to create an alias:
 
 ``` SHELL
-alias sdbcli='docker run --env="SDB_HOST=$SDB_HOST"
-                         --volume="$HOME:/root/" 
-                         --network="host"
-                         --interactive
-                         --tty 
-                         --rm
+alias sdbcli='docker run --env="SDB_HOST=$SDB_HOST" \
+                         --volume="$HOME:/root/" \
+                         --network="host" \
+                         --interactive \
+                         --tty \
+                         --rm \
                          streamsdb/sdbcli'
 ```
 
@@ -33,39 +33,39 @@ To keep aliases between sessions, you can save them in your user’s shell confi
 ### BASH
 
 ``` SHELL 
-echo 'alias sdbcli=\'docker run --env="SDB_HOST=$SDB_HOST"
-                                --volume="$HOME:/root/" 
-                                --network="host"
-                                --interactive
-                                --tty 
-                                --rm
-                                streamsdb/sdbcli\'' \
+echo 'alias sdbcli="docker run --env="SDB_HOST=\$SDB_HOST" \
+                         --volume="$HOME:/root/" \
+                         --network="host" \
+                         --interactive \
+                         --tty \
+                         --rm \
+                         streamsdb/sdbcli"' \
 >> $HOME/.bashrc
 ```
 
 ### ZSH
 
 ``` SHELL 
-echo 'alias sdbcli=\'docker run --env="SDB_HOST=$SDB_HOST"
-                                --volume="$HOME:/root/" 
-                                --network="host"
-                                --interactive
-                                --tty 
-                                --rm
-                                streamsdb/sdbcli\'' \
+echo 'alias sdbcli="docker run --env="SDB_HOST=\$SDB_HOST" \
+                         --volume="$HOME:/root/" \
+                         --network="host" \
+                         --interactive \
+                         --tty \
+                         --rm \
+                         streamsdb/sdbcli"' \
 >> $HOME/.zshrc
 ```
 
 ## FISH
 
 ``` SHELL 
-echo 'alias sdbcli=\'docker run --env="SDB_HOST=$SDB_HOST"
-                                --volume="$HOME:/root/" 
-                                --network="host"
-                                --interactive
-                                --tty 
-                                --rm
-                                streamsdb/sdbcli\'' \
+echo 'alias sdbcli="docker run --env="SDB_HOST=\$SDB_HOST" \
+                         --volume="$HOME:/root/" \
+                         --network="host" \
+                         --interactive \
+                         --tty \
+                         --rm \
+                         streamsdb/sdbcli"' \
 >> $HOME/.config/fish/config.fish
 ```
 
