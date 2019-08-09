@@ -14,11 +14,11 @@ The simplest way to get the StreamsDB .NET Driver is by installing the [StreamsD
 dotnet add package StreamsDB.Driver --version 0.9.1-dev.15
 ```
 
-> The StreamsDB.Client package has a SemVer 2.0.0 package version.
+> The StreamsDB.Driver package has a SemVer 2.0.0 package version.
 > This package is only available to download with SemVer 2.0.0 compatible 
 > NuGet clients, such as Visual Studio 2017 (version 15.3) and above or NuGet client 4.3.0 and above.
 
-The root namespace of the package is StreamsDB.Client:
+The root namespace of the package is StreamsDB.Driver:
 
 ``` csharp
 using StreamsDB.Driver;
