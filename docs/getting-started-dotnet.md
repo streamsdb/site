@@ -170,7 +170,7 @@ You can also subscribe to a stream for changes. Here is an example that subscrib
 
 ``` csharp
 // create a subscription to the example stream
-var cursor = db.SubscribeStream(streamName, -1, 10);
+var cursor = db.SubscribeStream(streamName, -1);
 
 // move to the next available message
 while (await cursor.MoveNext(CancellationToken.None))
