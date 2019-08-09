@@ -31,7 +31,7 @@ Once the driver has been imported, you can create a client connection to a Strea
 Add this code in the main function:
 
 ``` go
-client, err := sdb.Open("sdb://eu.streamsdb.io:443/database_name"")
+client, err := sdb.Open("sdb://eu.streamsdb.io:443/database_name")
 if err != nil {
   log.Fatal("connect error", err)
 }
