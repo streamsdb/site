@@ -8,7 +8,7 @@ This document describes how to write and read your first events to StreamsDB wit
 
 ## Introduction
 
-StreamDB comes with a command line interface tool called  `sdbcli` . This document describes the basic usage of `fdbcli` and the commands it support. The tool is distributed as a docker image.
+StreamDB comes with a command line interface tool called  `sdbcli` . This document describes the basic usage of `fdbcli` and the commands it support. The tool is distributed as a [docker image](https://hub.docker.com/r/streamsdb/sdbcli).
 
 ## Prerequisite
 
@@ -41,14 +41,14 @@ By default `sdbcli` will connect to a local instance of StreamsDB. You can chang
 ### SDB_HOST
 
 ``` BASH
-export SDB_CLI="sdb://sdb-01.streamsdb.io:443/database_name"
+export SDB_CLI="sdb://username:password@us-west.streamsdb.io:443/database_name"
 sdbcli env
 ```
 
 ### --host flag
 
 ``` BASH
-sdbcli --host="sdb://sdb-01.streamsdb.io:443/database_name" env
+sdbcli --host="sdb://username:password@us-west.streamsdb.io:443/database_name" env
 ```
 
 ## Ping StreamsDB
@@ -58,6 +58,16 @@ sdbcli ping
 ```
 
 The ping command should reply with a `Pong!` response.
+
+## Login
+
+If the StreamsDB server requires authentication, you can either specify a username and password in the [`connection string`](#connection-string] or use the `sdbcli login` command.
+
+The login command will store the authentication token on disk at `$HOME/.sdbtoken` and will be used to all subsequent `sdbcli` commands until `sdbcli logout` is used.
+
+``` BASH
+sdbcli login
+```
 
 ## Append your first event
 
