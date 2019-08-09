@@ -6,35 +6,58 @@ sidebar_label: CLI
 
 This document describes how to write and read your first events to StreamsDB with the command line utility `sdbcli`.
 
+## Introduction
+
+StreamDB comes with a command line interface tool called  `sdbcli` . This document describes the basic usage of `fdbcli` and the commands it support. The tool is distributed as a docker image.
+
 ## Prerequisite
 
 * [Docker](https://docs.docker.com/install/)
 
 ## Install SDBCLI
 
-StreamDB comes with a command line interface tool called  `sdbcli` . This document describes the basic usage of `fdbcli` and the commands it support. 
+The easiest way to use the `sdbcli` docker image is to create an alias:
 
-The easiest way to use `sdbcli` is via Docker. To use it create an alias that runs the [`streamsdb/sdbcli`](https://hub.docker.com/r/streamsdb/sdbcli) docker image by executing the following commands:
+`alias sdbcli='docker run --interactive --rm -t -e "SDB_HOST=$SDB_HOST" --network="host" --volume="$HOME:/root/" streamsdb/sdbcli'`
+
+To keep aliases between sessions, you can save them in your user’s shell configuration profile file.
+
+### BASH
+
+`alias sdbcli='docker run --interactive --rm -t -e "SDB_HOST=$SDB_HOST" --network="host" --volume="$HOME:/root/" streamsdb/sdbcli' >> $HOME/.bashrc`
+
+### ZSH
+
+`alias sdbcli='docker run --interactive --rm -t -e "SDB_HOST=$SDB_HOST" --network="host" --volume="$HOME:/root/" streamsdb/sdbcli' >> $HOME/.zshrc`
+
+## FISH
+
+`alias sdbcli='docker run --interactive --rm -t -e "SDB_HOST=$SDB_HOST" --network="host" --volume="$HOME:/root/" streamsdb/sdbcli' >> $HOME/.config/fish/config.fish`
+
+## Connection string
+
+By default `sdbcli` will connect to a local instance of StreamsDB. You can change this behaviour by providing a [connection string](/docs/connection-string) via the `SDB_HOST` environment variable or `--host` flag.
+
+### SDB_HOST
 
 ``` BASH
-alias sdbcli='docker run -it streamsdb/sdbcli -e "SDB_HOST=$SDB_HOST"'
-export SDB_HOST="sdb://api.streamsdb.io:443/default?tls=1&block=1"
+export SDB_CLI="sdb://sdb-01.streamsdb.io:443/database_name"
+sdbcli env
 ```
 
-You can make `sdbcli` alias permanent available by adding it to you `.bashrc` or `.zshrc`:
+### --host flag
 
-```
-echo "export SDB_HOST=$SDB_HOST" >> ~/.bashrc"
-echo "$(alias sdbcli)" >> ~/.bashrc"
+``` BASH
+sdbcli --host="sdb://sdb-01.streamsdb.io:443/database_name" env
 ```
 
-Now we can ping StreamsDB to verify we can reach the default server:
+## Ping StreamsDB
 
 ``` BASH
 sdbcli ping
 ```
 
-The ping command should reply with the roundtrip duration.
+The ping command should reply with a `Pong!` response.
 
 ## Append your first event
 
@@ -57,9 +80,3 @@ The `welcome` stream should have at least the event we just wrote to it. Lets qu
 ``` BASH
 sdbcli read --from="-10" welcome
 ```
-
-## Web admin
-
-You can also use the web admin to see your event:
-
-[web admin](https://app.streamsdb.io/default/streams/welcome/last)
