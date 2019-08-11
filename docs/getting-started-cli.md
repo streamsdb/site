@@ -41,7 +41,7 @@ export SDB_HOST="sdb://username:password@us-west.streamsdb.io:443/database_name"
 ### --host flag
 
 ```bash
-sdbcli --host="sdb://username:password@us-west.streamsdb.io:443/database_name" env
+sdbcli --host="sdb://username:password@us-west.streamsdb.io:443/database_name" <COMMAND>
 ```
 
 ## Login
