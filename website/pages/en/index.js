@@ -131,7 +131,7 @@ class Index extends React.Component {
             title: 'Change Notification',
           },
           {
-            content: 'We provide cost efficient cloud instances of StreamsDB to so you can focus on what really matters, your software.',
+            content: 'We provide cost efficient cloud instances of StreamsDB so you can focus on what really matters, your software.',
             image: `${baseUrl}img/undraw_server_status_5pbv.svg`,
             imageAlign: 'top',
             title: 'Cloud Native',
@@ -141,13 +141,13 @@ class Index extends React.Component {
         <Block layout="threeColumn" background="light">
         {[
           {
-            content: 'StreamsDB is build with proven technologies that are battle tested and ready for the toughest tasks.',
+            content: 'StreamsDB is built with proven technologies that are battle tested and ready for the toughest tasks.',
             image: `${baseUrl}img/undraw_QA_engineers_dg5p.svg`,
             imageAlign: 'top',
-            title: 'Build with standards',
+            title: 'Built with standards',
           },
           {
-            content: 'StreamsDB allows you write to multiple streams within a single transaction secure and efficiently.',
+            content: 'StreamsDB allows you write to multiple streams within a single transaction secure and efficient.',
             image: `${baseUrl}img/undraw_version_control_9bpv.svg`,
             imageAlign: 'top',
             title: 'Transaction support',
