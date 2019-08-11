@@ -10,7 +10,7 @@ This tutorial will help you get started with the [StreamsDB .NET Driver](https:/
 
 The simplest way to get the StreamsDB .NET Driver is by installing the [StreamsDB.Driver package](https://www.nuget.org/packages/StreamsDB.Driver/).
 
-``` bash
+```bash
 dotnet add package StreamsDB.Driver --version 0.9.2-dev.16
 ```
 
@@ -20,7 +20,7 @@ dotnet add package StreamsDB.Driver --version 0.9.2-dev.16
 
 The root namespace of the package is StreamsDB.Driver:
 
-``` csharp
+```c#
 using StreamsDB.Driver;
 ```
 
@@ -30,7 +30,7 @@ To connect to a StreamsDB database we use the StreamsDBClient class. The constru
 
 Once connected, you can get a handle to the database by using the `DB()` method:
 
-``` csharp
+```c#
 // create client connection
 var client = new StreamsDBClient("sdb://eu.streamsdb.io:443/database_name");
 
@@ -40,7 +40,7 @@ var db = client.DB();
 
 Alternatively you can leave the database from the connection string and pass it to the `DB()` method:
 
-``` csharp
+```c#
 // create client connection
 var client = new StreamsDBClient("sdb://eu.streamsdb.io:443/");
 
@@ -56,7 +56,7 @@ With the handle to a database, you can append messages to a stream in that datab
 
 Here we write 3 messages with the string values, `hello`, `world` and `!` to the stream `example`. 
 
-``` csharp
+```c#
 // append 3 messages to stream
 var from = await db.AppendStream("example",
   // 1
@@ -83,7 +83,7 @@ The `AppendStream()` method returns the position of the first message that has b
 Use the `ReadStreamForward()` method to read from a stream in the forward direction.
 In the following example we read the `example` stream from the position we got back from the `AppendStream()` method from the previous example and limit the result to a maximum of 10 messages.
 
-``` csharp
+```c#
 // read from the example stream
 var slice = await db.ReadStreamForward("example", from, 10);
 
@@ -107,7 +107,7 @@ Here is an example that reads the `example` stream backward. We specify an offse
 
 In the slice that is returned, the message positions are not relative, but exact.
 
-``` csharp
+```c#
 // read from the example stream
 var slice = await db.ReadStreamBackward("example", -1, 10);
 
@@ -127,7 +127,7 @@ foreach(var message in slice.Messages) {
 
 The slice returned by reading operations has a `HasNext` property indicating whether there are more messages available at the time of reading. You can use this indicator to continue reading when there are more messages.
 
-``` csharp
+```c#
 // create 1000 messages to write to the stream
 var thousandMessages = Enumerable.Range(1, 1000).Select(n => new MessageInput
 {
@@ -168,7 +168,7 @@ do
 
 You can also subscribe to a stream for changes. Here is an example that subscribes to the `example` stream from the beginning. Existing messages will be delivered immediately and the enumerator will block on `MoveNext()` till new messages are written to the stream.
 
-``` csharp
+```c#
 // create a subscription to the example stream
 var cursor = db.SubscribeStream(streamName, -1);
 
@@ -198,7 +198,7 @@ There is an overload of the `AppendStream()` method that accepts a `ConcurrencyC
 
 Here is an example that writes a strict monotonically increasing number to a stream. Because of the `ConcurrencyCheck` this example could be run concurrently and the numbers on the steam will still be monotonicly increasing:
 
-```
+```c#
 int nextNumber;
 ConcurrencyCheck check;
 
