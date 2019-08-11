@@ -125,7 +125,7 @@ class Index extends React.Component {
             title: 'Easily scalable',
           },
           {
-            content: 'StreamsDB provides the ability to subscribe streams for changes with low latency and minimal resource costs.',
+            content: 'StreamsDB provides the ability to subscribe to streams for changes with low latency and minimal resource costs.',
             image: `${baseUrl}img/undraw_timeline_9u4u.svg`,
             imageAlign: 'top',
             title: 'Change Notification',
