@@ -1,6 +1,6 @@
 ---
 id: getting-started-cli
-title: Getting Started
+title: Getting Started CLI
 sidebar_label: CLI
 ---
 
@@ -14,7 +14,7 @@ StreamsDB comes with a command line interface tool called sdbcli. The tool is di
 
 ## Installation
 
-The easiest way to use the `sdbcli` docker image is to create an alias:
+The easiest way to use the sdbcli docker image is to create an alias:
 
 ```bash
 alias sdbcli='docker run --env="SDB_HOST=$SDB_HOST"
@@ -30,15 +30,15 @@ To keep aliases between sessions, you can save them in your user’s shell confi
 
 ## Connection string
 
-By default sdbcli will connect to a local instance of StreamsDB. You can change this behaviour by providing a [connection string](/docs/connection-string) to the `SDB_HOST` environment variable or set the `--host` flag.
+By default sdbcli will connect to a local instance of StreamsDB. You can change this behaviour by providing a [connection string](/docs/connection-string) to the `SDB_HOST` environment variable or the `--host` flag.
 
-### SDB_HOST
+### SDB_HOST environment variable
 
 ```bash
 export SDB_HOST="sdb://username:password@us-west.streamsdb.io:443/database_name"
 ```
 
-### --host flag
+### host flag
 
 ```bash
 sdbcli --host="sdb://username:password@us-west.streamsdb.io:443/database_name" <COMMAND>
@@ -46,9 +46,9 @@ sdbcli --host="sdb://username:password@us-west.streamsdb.io:443/database_name" <
 
 ## Login
 
-If the StreamsDB server or database requires authentication, you can specify a username and password in the [`connection string`](#connection-string] or use the login command.
+If the StreamsDB server or database requires authentication, you can specify a username and password in the [`connection string`](#connection-string) or use the `login` command.
 
-The login command will authenticate with the provides username and password and store the authentication token on disk. The token stored on disk will be used for all subsequent commands till the logout command is used.
+The `login` command will authenticate with the provides username and password and store the authentication token on disk. The token stored on disk will be used for all subsequent commands till the logout command is used.
 
 ```bash
 sdbcli login
@@ -80,22 +80,28 @@ The append command prints the position of the written message.
 
 Use the `read` command to read from a stream. Its syntax is `sdbcli read <STREAM>`.
 
-The `welcome` stream should have at least the event we just wrote to it. Lets query the last 10 events of the `welcome` stream to see it:
-
 ```bash
-sdbcli read welcome
+sdbcli read stream_name
 ```
 
 To specify a read position use the `--from` flag:
 
 ```bash
-sdbcli read --from=5 welcome
+sdbcli read --from=5 stream_name
 ```
 
-To follow a stream use the `--follow` flag. This will prevent the read command to exit when there are no more messages available and will wait indefinitely for new messages to arrive.
+The position can also be relative from the end by providing a negative value, where `-1` is the last message:
 
 ```bash
-sdbcli read --follow welcome
+# read last 10 messages from stream_name
+sdbcli read --from=-10 stream_name
+```
+
+To follow a stream use the `--follow` flag. This will prevent the `read` command to exit when there are no more messages available and it will wait indefinitely for new messages to arrive.
+
+```bash
+# read last message and subscribe to changes
+sdbcli read --from=-1 --follow stream_name
 ```
 
 ## List of streams
