@@ -43,7 +43,6 @@ class HomeSplash extends React.Component {
         <p style={{fontSize: "25px", paddingTop: "5px"}}>
         StreamsDB is the modern stream database for advanced stream processing and event sourcing systems
         </p>
-        <Button href="/docs/">Getting Started</Button>
       </h2>
     );
 
@@ -67,6 +66,10 @@ class HomeSplash extends React.Component {
       <SplashContainer>
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
+          <PromoSection>
+            <Button href="/docs">Getting Started</Button>
+            <Button href="/join">Sign up for the beta</Button>
+          </PromoSection>
         </div>
       </SplashContainer>
     );
