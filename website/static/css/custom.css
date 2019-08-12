@@ -7,6 +7,10 @@
     max-height: 160px !important;
 }
 
+.promoRow .button {
+    font-size: 0.8em !important;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
