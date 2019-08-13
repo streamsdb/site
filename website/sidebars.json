@@ -12,6 +12,9 @@
     "Reference": [
       "connection-string",
       "dotnet-api-reference"
+    ],
+    "Legal": [
+      "beta-agreement"
     ]
   }
 }
