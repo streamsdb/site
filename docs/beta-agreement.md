@@ -1,6 +1,6 @@
 ---
 id: beta-agreement
-title: StreamsDB Beta Agreement
+title: Beta Agreement
 ---
 
 This StreamsDB Cloud Beta Agreement (“Agreement”) governs access to this beta version of a product offering by StreamsDB ("StreamsDB") to Company and Company’s rights of use in the StreamsDB Cloud Beta Service (“Beta Service”).
