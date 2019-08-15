@@ -45,4 +45,4 @@ The following connection string options are available:
 |--------|---------|-------------|
 | insecure | `false` | A boolean value to disable TLS/SSL for the connection. |
 | block | `false` | A boolean to enable or disable waiting for the connection to be established when connecting to the StreamsDB server. |
-| gzip | `true` | A boolean to enable or disable gzip compression. |
+| gzip | `false` | A boolean to enable or disable gzip compression. |
