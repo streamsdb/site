@@ -42,7 +42,7 @@ Alternatively you can leave the database from the connection string and pass it 
 
 ```c#
 // create client connection
-var client = new StreamsDBClient("sdb://eu.streamsdb.io:443/");
+var client = StreamsDBClient.Connect("sdb://eu.streamsdb.io:443/");
 
 // get handle to specified database
 var db = client.DB("database_name");
