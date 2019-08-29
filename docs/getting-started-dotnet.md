@@ -32,7 +32,7 @@ Once connected, you can get a handle to the database by using the `DB()` method:
 
 ```c#
 // create client connection
-var client = StreamsDBClient.Connect("sdb://eu.streamsdb.io:443/database_name");
+var client = await StreamsDBClient.Connect("sdb://eu.streamsdb.io:443/database_name");
 
 // get handle to database from the connection string
 var db = client.DB();
@@ -42,7 +42,7 @@ Alternatively you can leave the database from the connection string and pass it 
 
 ```c#
 // create client connection
-var client = StreamsDBClient.Connect("sdb://eu.streamsdb.io:443/");
+var client = await StreamsDBClient.Connect("sdb://eu.streamsdb.io:443/");
 
 // get handle to specified database
 var db = client.DB("database_name");
