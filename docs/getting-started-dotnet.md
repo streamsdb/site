@@ -147,7 +147,7 @@ do
 
   // print messages to console
   foreach(var message in slice.Messages) {
-    var value = Encoding.UTF8.GetString(message.Value)
+    var value = Encoding.UTF8.GetString(message.Value);
     Console.WriteLine($"[{0}] {1}", message.Position, value);
   }
 
