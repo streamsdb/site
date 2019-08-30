@@ -234,6 +234,32 @@ while (true) {
 }
 ```
 
+## Global reading
+
+Every database in has a global stream that contains all messages in the database. Messages appear on this automaticly and you cannot write to the global stream directly. The `Message.Stream` property at the messages on a global slice do point to there original stream instead of the global stream. This is also true for the `Message.Position` property, this refers to the position of the messages at the containing stream rather then the global stream.
+
+```c#
+var from = GlobalPosition.Begin;
+IGlobalSlice slice;
+
+do
+{
+    // read from the global stream
+    slice = await db.ReadGlobalForward(from, 100);
+
+    // print messages to console
+    foreach(var message in slice.Messages)
+    {
+        var value = Encoding.UTF8.GetString(message.Value);
+        Console.WriteLine("[{0}/{1}] {2}", message.Stream, message.Position, value);
+    }
+
+    // set next position to read from
+    from = slice.Next;
+}
+while(slice.HasNext);
+```
+
 ## Resources
 
 * [StreamsDB.Driver package](https://www.nuget.org/packages/StreamsDB.Driver/)
