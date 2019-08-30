@@ -236,7 +236,7 @@ while (true) {
 
 ## Global reading
 
-Every database in has a global stream that contains all messages in the database. Messages appear on this automaticly and you cannot write to the global stream directly. The `Message.Stream` property at the messages on a global slice do point to there original stream instead of the global stream. This is also true for the `Message.Position` property, this refers to the position of the messages at the containing stream rather then the global stream.
+Every database has a global stream that contains all messages in the database. Messages appear on this automatically and you cannot write to the global stream directly. The `Message.Stream` property at the messages on a global slice does point to there original stream instead of the global stream. This is also true for the `Message.Position` property, this refers to the position of the messages at the containing stream rather than the global stream.
 
 ```c#
 var from = GlobalPosition.Begin;
