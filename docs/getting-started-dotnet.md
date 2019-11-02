@@ -102,7 +102,7 @@ var from = await db.AppendStreams(
 );
 ```
 
-> Please not that this is an experimental feature and is currently limited to a 5MB write limit.
+> Please not that this is an experimental feature and is currently limited to a total write size of 5MB.
 
 ## Reading from a stream
 
