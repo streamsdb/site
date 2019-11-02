@@ -78,6 +78,32 @@ var from = await db.AppendStream("example",
 
 The `AppendStream()` method returns the position of the first message that has been written to the stream. In StreamsDB the append operation is an [atomic operation](https://en.wikipedia.org/wiki/Atomicity_(database_systems)), either all the messages are written or none in case of an error. Also on a successful write, all messages in a single append operation are written directly after each other. In other words, if the example from above returned position `1`, the next message `world` is at position `2` and `!` at position `3`.
 
+## Append multiple streams
+
+SteamsDB has the ability to append messages to multiple streams in a single atomic operation. This means either all messages get written or none in case of an error.
+
+```
+// append 3 messages to stream
+var from = await db.AppendStreams(new StreamInput("A",
+  // 1
+  new MessageInput {
+    Type = "string",
+    Value = Encoding.UTF8.GetBytes("hello")
+  },
+  // 2
+  new MessageInput {
+    Type = "string",
+    Value = Encoding.UTF8.GetBytes("world")
+  },
+  // 3
+  new MessageInput {
+    Type = "string",
+    Value = Encoding.UTF8.GetBytes("!")
+  });
+```
+
+> Please not that this is an experimental feature and is currently limited to a 5MB write limit.
+
 ## Reading from a stream
 
 Use the `ReadStreamForward()` method to read from a stream in the forward direction.
