@@ -84,22 +84,22 @@ SteamsDB has the ability to append messages to multiple streams in a single atom
 
 ```
 // append 3 messages to stream
-var from = await db.AppendStreams(new StreamInput("A",
-  // 1
-  new MessageInput {
-    Type = "string",
-    Value = Encoding.UTF8.GetBytes("hello")
-  },
-  // 2
-  new MessageInput {
-    Type = "string",
-    Value = Encoding.UTF8.GetBytes("world")
-  },
-  // 3
-  new MessageInput {
-    Type = "string",
-    Value = Encoding.UTF8.GetBytes("!")
-  });
+var from = await db.AppendStreams(
+  new StreamInput("A", new []
+  {
+    new MessageInput {
+      Type = "string",
+      Value = Encoding.UTF8.GetBytes("hello")
+    },
+  }),
+  new StreamInput("B", new []
+  {
+    new MessageInput {
+      Type = "string",
+      Value = Encoding.UTF8.GetBytes("world")
+    },
+  })
+);
 ```
 
 > Please not that this is an experimental feature and is currently limited to a 5MB write limit.
