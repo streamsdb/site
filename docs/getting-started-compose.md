@@ -76,22 +76,21 @@ services:
 
 ## Start
 
-In the same directory execute `docker-compose up -d`. Compose will download the images and start the containers.
+Execute the following command to download all images and start the containers, make sure you execute this command in the same directory as the `docker-compose.yml` file we just created in the previous step:
 
-## Admin
-
-You can now open a browser and see the administrative web ui at: [localhost:4000](http://localhost:4000)
+```
+docker-compose up -d
+```
 
 ## Create a database
 
-In the same terminal set the `SDB_HOST` environment variable to point to the local streamsdb node:
+Use sdbcli to create a new database:
 
 ```
 export SDB_HOST="sdb://localhost:6000/?insecure=1"
-```
-
-Now create a database using `sdbcli`:
-
-```
 sdbcli create-database demo
 ```
+
+## Admin
+
+Open a browser and see the admin ui at: [localhost:4000](http://localhost:4000)
