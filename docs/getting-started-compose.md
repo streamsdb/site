@@ -1,5 +1,5 @@
 ---
-id: docker-compose
+id: getting-started-compose
 title: Getting Started docker compose
 sidebar_label: compose
 ---

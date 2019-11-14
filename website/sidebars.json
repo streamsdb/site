@@ -8,7 +8,7 @@
       "getting-started-cli",
       "getting-started-go",
       "getting-started-dotnet",
-      "compose"
+      "getting-started-compose"
     ],
     "Reference": [
       "connection-string",
