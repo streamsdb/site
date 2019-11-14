@@ -10,6 +10,7 @@
       "getting-started-dotnet"
     ],
     "Reference": [
+      "docker-compose",
       "connection-string",
       "dotnet-api-reference"
     ],
