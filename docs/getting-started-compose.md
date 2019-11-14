@@ -99,3 +99,11 @@ sdbcli create-database demo
 ## Admin
 
 Open a browser and see the admin ui at: [localhost:4000](http://localhost:4000)
+
+## Discard containers and state
+
+To stop and remove the containers including the state:
+
+```
+docker-compose down -v
+```
