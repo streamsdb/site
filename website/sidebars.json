@@ -7,10 +7,10 @@
     "Gettings started": [
       "getting-started-cli",
       "getting-started-go",
-      "getting-started-dotnet"
+      "getting-started-dotnet",
+      "compose"
     ],
     "Reference": [
-      "docker-compose",
       "connection-string",
       "dotnet-api-reference"
     ],
