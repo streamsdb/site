@@ -8,9 +8,9 @@ This document describes how to run StreamsDB localy with Docker Compose. It runs
 
 ## Prerequizites
 
-* docker
-* docker-compose
-* sdbcli
+* [Docker](https://docs.docker.com/install/)
+* [docker-compose](https://docs.docker.com/compose/install/)
+* [StreamsDB CLI](getting-started-cli.md)
 
 ## docker-compose.yml
 
