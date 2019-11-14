@@ -63,7 +63,7 @@ services:
 
   # administration web ui
   admin:
-    image: streamsdb/admin:latest
+    image: streamsdb/admin:master
     environment:
       PORT: 3000
       API: "http://graphql:3000"
