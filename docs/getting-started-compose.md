@@ -12,7 +12,7 @@ This document describes how to run StreamsDB localy with Docker Compose. It runs
 * [docker-compose](https://docs.docker.com/compose/install/)
 * [StreamsDB CLI](getting-started-cli.md)
 
-## docker-compose.yml
+## Composition
 
 Create a file called `docker-compose.yml` with the following content:
 
