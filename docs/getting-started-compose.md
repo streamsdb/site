@@ -30,7 +30,12 @@ services:
     image: foundationdb/foundationdb:6.1.10
     command:
       [ "/bin/bash", "-c", 
-        "source /var/fdb/scripts/create_cluster_file.bash; FDB_COORDINATOR=fdb create_cluster_file ; fdbcli --exec status | grep -m 1 'no database' &> /dev/null && fdbcli --exec 'configure new single ssd' || echo 'db already exists'" ]
+        "source /var/fdb/scripts/create_cluster_file.bash;
+         FDB_COORDINATOR=fdb create_cluster_file ;
+         fdbcli --exec status
+         | grep -m 1 'no database' &> /dev/null
+         && fdbcli --exec 'configure new single ssd' 
+         || echo 'db already exists'" ]
     environment:
       - FDB_COORDINATOR:fdb
     depends_on:
