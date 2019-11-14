@@ -1,6 +1,7 @@
 ---
 id: docker-compose
 title: Run StreamsDB localy with Docker Compose
+sidebar_label: docker-compose
 ---
 
 This document describes how to run StreamsDB localy with Docker Compose. It runs FoundationDB, StreamsDB, graphql api gateway and the administrative web ui.
