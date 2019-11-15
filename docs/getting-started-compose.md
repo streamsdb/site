@@ -1,7 +1,7 @@
 ---
 id: getting-started-compose
 title: Getting Started docker compose
-sidebar_label: compose
+sidebar_label: Docker Compose
 ---
 
 This document describes how to run StreamsDB localy with Docker Compose. It runs FoundationDB, StreamsDB, graphql api gateway and the administrative web ui.
