@@ -14,7 +14,7 @@ This document describes how to run StreamsDB localy with Docker Compose. It runs
 
 ## Composition
 
-Create a file called `docker-compose.yml` with the following content:
+The following `docker-compose.yml` file defines the composition of these services that are required for StreamsDB to run, including an administrative ui.
 
 ```yaml
 version: '3'
