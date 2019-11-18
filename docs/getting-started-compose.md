@@ -50,9 +50,9 @@ services:
       LOG: debug
     links:
       - fdb
-    restart: unless-stopped
     ports:
       - 6000:6000
+    restart: unless-stopped
 
   # graphql api
   graphql:
