@@ -71,7 +71,7 @@ sdbcli append welcome string "HELLO WORLD from $USER"
 Alternatively you can use `-` to read from STDIN:
 
 ```bash
-echo "HELLO WORLD from $USER" | sdbcli append welcome string
+echo "HELLO WORLD from $USER" | sdbcli append welcome string -
 ```
 
 The append command prints the position of the written message.
